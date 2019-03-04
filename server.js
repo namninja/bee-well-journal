@@ -12,11 +12,11 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const { PORT, DATABASE_URL } = require("./config/database.js");
 const SECRET = process.env.SECRET;
-console.log(typeof SECRET)
+
 
 
 // configuration
-require('./config/passport')(passport); // pass passport for configuration 
+require('./config/passport'); // pass passport for configuration 
 
 // set up our express application
 
@@ -53,8 +53,10 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routes ======================================================================
-require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
-
+const router = require('./app/routes.js'); // load our routes and pass in our app and fully configured passport
+app.use("/", router)
+const journalRouter = require('./app/journal-router.js'); // load our routes and pass in our app and fully configured passport
+app.use("/", journalRouter)
 // launch ======================================================================
 
   // closeServer needs access to a server object, but that only

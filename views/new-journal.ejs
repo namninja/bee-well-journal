@@ -1,0 +1,84 @@
+<!-- views/profile.ejs -->
+<!doctype html>
+<html>
+<head>
+    <title>Node Authentication</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <style>
+        body        { padding-top:80px; word-wrap:break-word; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="col-sm-6 col-sm-offset-3">
+
+        <h1><span class="fa fa-sign-in"></span> Journal</h1>
+    
+    
+    
+       
+        <form action="/journal" method="post">
+            <div class="form-group">
+                <label>How do you feel this morning on a scale of 1-10</label>
+                <input type="text" class="form-control" name="morningRating" required>
+            </div>
+            <div class="form-group">
+                <label>3 things you are excited about</label>
+                <input type="text" class="form-control" name="excitedAbout" required>
+                <input type="text" class="form-control" name="excitedAbout" required>
+                <input type="text" class="form-control" name="excitedAbout" required>
+            </div>
+            <div class="form-group">
+                <label>Today's Priorities</label>
+                <input type="text" class="form-control" name="priorities" required>
+                <input type="text" class="form-control" name="priorities" required>
+                <input type="text" class="form-control" name="priorities" required>
+                <input type="text" class="form-control" name="priorities" required>
+                <input type="text" class="form-control" name="priorities" required>
+            </div>
+            <div class="form-group">
+                <label>How do you feel this evening on a scale of 1-10</label>
+                <input type="text" class="form-control" name="eveningRating" >
+            </div>
+            <div class="form-group">
+                <label>Pick three words to describe your day</label>
+                <input type="text" class="form-control" name="describeToday" >
+                <input type="text" class="form-control" name="describeToday" >
+                <input type="text" class="form-control" name="describeToday" >
+            </div>
+            <div class="form-group">
+                <label>Today's Wins</label>
+                <input type="text" class="form-control" name="todayWins" >
+                <input type="text" class="form-control" name="todayWins" >
+                <input type="text" class="form-control" name="todayWins" >
+            </div>
+            <div class="form-group">
+                <label>Things to improve on</label>
+                <input type="text" class="form-control" name="toImprove" >
+            </div>
+            <div class="form-group">
+                <label>Three things you are grateful for</label>
+                <input type="text" class="form-control" name="describeToday" >
+                <input type="text" class="form-control" name="describeToday" >
+                <input type="text" class="form-control" name="describeToday" >
+            </div>
+            <div class="form-group">
+                <label>Journal</label>
+                <input type="text" class="form-control" name="journalEntry" >
+            </div>
+    
+            <button type="submit" class="btn btn-warning btn-lg">Save</button>
+        </form>
+    
+        <hr>
+    
+    
+    </div>
+   
+
+</div>
+</body>
+</html>
