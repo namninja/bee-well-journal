@@ -14,7 +14,17 @@ const journalSchema = mongoose.Schema({
         toImprove  : String,
         gratitude  : [String],
         journalEntry  : String,
-        user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+        user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 });
+
+journalSchema.pre('find', function(next) {
+    this.populate('user');
+    next();
+  })
+  
+journalSchema.pre('findOne', function(next) {
+    this.populate('user');
+    next();
+  })
 
 module.exports = mongoose.model('Journal', journalSchema);

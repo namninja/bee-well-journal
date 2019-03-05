@@ -1,0 +1,89 @@
+<!-- views/profile.ejs -->
+<!doctype html>
+<html>
+
+<head>
+    <title>Node Authentication</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <style>
+        body {
+            padding-top: 80px;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="col-sm-6 col-sm-offset-3">
+
+            <h1><span class="fa fa-sign-in"></span> Journal</h1>
+
+
+
+
+            <p><% console.log(journal[0].excitedAbout[0], "inside")%></p>
+            <div class="form-group">
+                <h3>How do you feel this morning on a scale of 1-10</h3>
+                <p><%=journal[0].morningRating%></p>
+            </div>
+            <div class="form-group">
+                <h3>3 things you are excited about</h3>
+                <% for( let i=0; i < journal[0].excitedAbout.length; i++) { %>
+                <p><%=journal[0].excitedAbout[i]%></p>
+                <% } %>
+            </div>
+            <div class="form-group">
+                <h3>Today's Priorities</h3>
+                <% for( let i=0; i < journal[0].priorities.length; i++) { %>
+                <p><%=journal[0].priorities[i]%></p>
+                <% } %>
+            </div>
+            <div class="form-group">
+                <h3>How do you feel this evening on a scale of 1-10</h3>
+                <p><%=journal[0].eveningRating%></p>
+            </div>
+            <div class="form-group">
+                <h3>Pick three words to describe your day</h3>
+                <% for( let i=0; i < journal[0].describeToday.length; i++) { %>
+                <p><%=journal[0].describeToday[i]%></p>
+                <% } %>
+            </div>
+            <div class="form-group">
+                <h3>Today's Wins</h3>
+                <% for( let i=0; i < journal[0].todayWins.length; i++) { %>
+                <p><%=journal[0].todayWins[i]%></p>
+                <% } %>
+            </div>
+            <div class="form-group">
+                <h3>Things to improve on</h3>
+                <p><%=journal[0].toImprove%></p>
+            </div>
+            <div class="form-group">
+                <h3>Three things you are grateful for</h3>
+                <% for( let i=0; i < journal[0].gratitude.length; i++) { %>
+                <p><%=journal[0].gratitude[i]%></p>
+                <% } %>
+            </div>
+            <div class="form-group">
+                <h3>Journal</h3>
+                <p><%=journal[0].journalEntry%></p>
+            </div>
+
+
+
+            <a href="/dashboard" class="btn btn-default btn-sm">Exit</a>
+            <a href="/edit-journal" class="btn btn-default btn-sm">Edit</a>
+            <hr>
+
+
+        </div>
+
+
+    </div>
+</body>
+
+</html>

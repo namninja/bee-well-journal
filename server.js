@@ -55,6 +55,8 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 // routes ======================================================================
 const router = require('./app/routes.js'); // load our routes and pass in our app and fully configured passport
 app.use("/", router)
+const newjournalRouter = require('./app/new-journal-router.js'); // load our routes and pass in our app and fully configured passport
+app.use("/", newjournalRouter)
 const journalRouter = require('./app/journal-router.js'); // load our routes and pass in our app and fully configured passport
 app.use("/", journalRouter)
 // launch ======================================================================

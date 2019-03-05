@@ -2,18 +2,24 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
-
+const User = require('./models/user')
 const Journal = require('./models/journal');
 
-router.get('/new-journal', function (req, res) {
-    res.render('new-journal.ejs', { user: req.user }); // load the index.ejs file
+router.get('/journal/:id', function (req, res) {
+    console.log(req.params.id, '===========================================here')
+    Journal.find({ "_id": req.params.id }, function (err, journal) {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            console.log(journal, '===========================================now')
+            res.render('journal.ejs', { 
+                journal 
+                
+            }); // load the index.ejs file
+        }
+    });
+
 });
 
-
-router.post('/new-journal', jsonParser, function(req, res) {
-    const newEntry = new Journal(req.body)
-    console.log(req.body)
-    res.status(201)
-})
 
 module.exports = router

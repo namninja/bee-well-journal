@@ -20,24 +20,24 @@
     
     
        
-        <form action="/journal" method="post">
+        <form action="/new-journal" method="post">
             <div class="form-group">
                 <label>How do you feel this morning on a scale of 1-10</label>
-                <input type="text" class="form-control" name="morningRating" required>
+                <input type="text" class="form-control" name="morningRating" >
             </div>
             <div class="form-group">
                 <label>3 things you are excited about</label>
-                <input type="text" class="form-control" name="excitedAbout" required>
-                <input type="text" class="form-control" name="excitedAbout" required>
-                <input type="text" class="form-control" name="excitedAbout" required>
+                <input type="text" class="form-control" name="excitedAbout" >
+                <input type="text" class="form-control" name="excitedAbout" >
+                <input type="text" class="form-control" name="excitedAbout" >
             </div>
             <div class="form-group">
                 <label>Today's Priorities</label>
-                <input type="text" class="form-control" name="priorities" required>
-                <input type="text" class="form-control" name="priorities" required>
-                <input type="text" class="form-control" name="priorities" required>
-                <input type="text" class="form-control" name="priorities" required>
-                <input type="text" class="form-control" name="priorities" required>
+                <input type="text" class="form-control" name="priorities" >
+                <input type="text" class="form-control" name="priorities" >
+                <input type="text" class="form-control" name="priorities" >
+                <input type="text" class="form-control" name="priorities" >
+                <input type="text" class="form-control" name="priorities" >
             </div>
             <div class="form-group">
                 <label>How do you feel this evening on a scale of 1-10</label>
@@ -69,10 +69,10 @@
                 <label>Journal</label>
                 <input type="text" class="form-control" name="journalEntry" >
             </div>
-    
+            
             <button type="submit" class="btn btn-warning btn-lg">Save</button>
         </form>
-    
+        <a href="/dashboard" class="btn btn-default btn-sm">Cancel</a>
         <hr>
     
     

@@ -30,7 +30,14 @@
                         <strong>email</strong>: <%= user.email %><br>
                         <strong>password</strong>: <%= user.password %>
                     </p>
+
+
                     <a href="/new-journal" class="btn btn-default btn-sm">create new journal</a>
+                    <% for( let i=0; i < journals.length; i++) { %>
+                    <div>
+                        <a href="/journal/<%=journals[i]._id%>"><h2 class="dates"><%=journals[i].created%></h2></a> 
+                    </div>
+                    <% } %> 
             </div>
         </div>
         

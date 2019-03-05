@@ -14,9 +14,7 @@ function isLoggedIn(req, res, next) {
 }
 
 const Journal = require('./models/journal');
-const User = require('./models/user');
 
-const journalRoutes = require('./journal-router.js');
 
 
 
@@ -63,10 +61,17 @@ const journalRoutes = require('./journal-router.js');
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
     router.get('/dashboard', isLoggedIn, function (req, res) {
+        Journal.find({"user" : req.user.id}, function(err, journal) {
+            if(err) {
+                res.status(500).send(err);
+            } else {
         res.render('dashboard.ejs', {
-            user: req.user // get the user out of session and pass to template
+            user: req.user,
+            journals: journal
+              // get the user out of session and pass to template
         });
-    });
+    }});
+});
 
     // LOGOUT ==============================
     router.get('/logout', function (req, res) {
