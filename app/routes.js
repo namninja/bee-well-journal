@@ -68,6 +68,7 @@ const Journal = require('./models/journal');
         res.render('dashboard.ejs', {
             user: req.user,
             journals: journal
+           
               // get the user out of session and pass to template
         });
     }});

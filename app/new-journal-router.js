@@ -5,13 +5,24 @@ const jsonParser = bodyParser.json();
 const User = require('./models/user')
 const Journal = require('./models/journal');
 
-router.get('/new-journal', function (req, res) {
+function isLoggedIn(req, res, next) {
+
+  // if user is authenticated in the session, carry on 
+  if (req.isAuthenticated())
+      return next();
+
+  // if they aren't redirect them to the home page
+  res.redirect('/');
+}
+
+router.get('/new-journal', isLoggedIn, function (req, res) {
    
-    res.render('new-journal.ejs', { user: req.user }); // load the index.ejs file
+    res.render('new-journal.ejs', { user: req.user, journal: null }); // load the index.ejs file
 });
 
 
-router.post('/new-journal', jsonParser, function(req, res) {
+
+router.post('/new-journal', isLoggedIn, jsonParser, function(req, res) {
     // const newEntry = new Journal(req.body)
     
     User.findById(req.user._id)

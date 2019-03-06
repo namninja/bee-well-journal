@@ -26,6 +26,7 @@ app.use(bodyParser.json()); // get information from html forms
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', express.static(path.join(__dirname, '/public'))); 
 app.use('/', express.static(path.join(__dirname, '/public')));
+app.use('/', express.static(__dirname + '/public'));
 
 app.use(express.static('public'));
 
@@ -55,10 +56,10 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 // routes ======================================================================
 const router = require('./app/routes.js'); // load our routes and pass in our app and fully configured passport
 app.use("/", router)
-const newjournalRouter = require('./app/new-journal-router.js'); // load our routes and pass in our app and fully configured passport
-app.use("/", newjournalRouter)
+
 const journalRouter = require('./app/journal-router.js'); // load our routes and pass in our app and fully configured passport
 app.use("/", journalRouter)
+
 // launch ======================================================================
 
   // closeServer needs access to a server object, but that only
