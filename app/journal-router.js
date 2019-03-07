@@ -15,6 +15,22 @@ function isLoggedIn(req, res, next) {
     res.redirect('/');
 }
 
+router.get('/mood-data', isLoggedIn, function (req, res) {
+    console.log(req)
+    Journal.find({user: req.user._id})
+      .then(journals => {
+        console.log(journals.length)
+        res.json({
+          journals: journals.map(journal => journal.moodData())
+        });
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({ message: "Internal server error" });
+      });
+});
+
+
 router.get('/create-journal', isLoggedIn, function (req, res) {
    
     res.render('create-journal.ejs', { user: req.user, journal: null }); // load the index.ejs file
@@ -68,7 +84,7 @@ router.get('/create-journal/:id',isLoggedIn, function (req, res) {
 });
 
 router.post('/create-journal/:id',isLoggedIn, function (req, res) {
-    console.log(req.params.id, '===========================================here')
+    
  
     Journal
         .findOneAndUpdate({_id:req.params.id},req.body, {new : true})
@@ -77,12 +93,12 @@ router.post('/create-journal/:id',isLoggedIn, function (req, res) {
 });
 
 router.get('/journal/:id', isLoggedIn, function (req, res) {
-    console.log(req.params.id, '===========================================here')
+    
     Journal.find({ "_id": req.params.id }, function (err, journal) {
         if (err) {
             res.status(500).send(err);
         } else {
-            console.log(journal, '===========================================now')
+            
             res.render('journal.ejs', { 
                 journal 
                 
