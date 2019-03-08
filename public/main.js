@@ -87,14 +87,13 @@ function displayError(error) {
 function deleteJournal(journalId) {
   console.log("Deleting journal `" + journalId + "`");
   const url = LOCAL + "delete-journal/" + journalId
-  const dash = LOCAL + 'dashboard'
   fetch(url, {
       method: "DELETE",
   })
   .then(response => {
     if (response.ok) {
       console.log('Journal ' + journalId + ' successfully deleted')
-      response.dash
+      window.open( '/dashboard', '_top')
     }
     //if reponse is not ok,then throw an error
     throw new Error(response.statusText);
