@@ -20,9 +20,9 @@ router.get('/mood-data', isLoggedIn, function (req, res) {
     Journal.find({user: req.user._id})
       .then(journals => {
         console.log(journals.length)
-        res.json({
-          journals: journals.map(journal => journal.moodData())
-        });
+        res.json(
+          journals.map(journal => journal.moodData())
+        );
       })
       .catch(err => {
         console.error(err);
@@ -88,7 +88,7 @@ router.post('/create-journal/:id',isLoggedIn, function (req, res) {
  
     Journal
         .findOneAndUpdate({_id:req.params.id},req.body, {new : true})
-        .then(post => res.redirect("/journal/"+req.params.id))
+        .then(journal => res.redirect("/journal/"+req.params.id))
         .catch(err => res.status(500).json({ message: "Internal server error" }));
 });
 
@@ -108,5 +108,11 @@ router.get('/journal/:id', isLoggedIn, function (req, res) {
 
 });
 
+router.delete('/delete-journal/:id', isLoggedIn, function (req, res) {
+    console.log(req.params.id)
+    Journal.findByIdAndRemove(req.params.id)
+    .then(blog => res.status(204).end())
+      .catch(err => res.status(500).json({ message: "Internal server error" }));
+  });
 
 module.exports = router

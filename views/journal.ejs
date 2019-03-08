@@ -74,10 +74,11 @@
                 <p><%=journal[0].journalEntry%></p>
             </div>
 
-
-
-            <a href="/dashboard" class="btn btn-default btn-sm">Done</a>
+            <button class="js-delete btn btn-default btn-sm" onclick="return confirm('WARNING! You are are about to delete this Journal')" data-key='<%=journal[0]._id%>'>Delete</button>
             <a href="/create-journal/<%=journal[0]._id%>" class="btn btn-default btn-sm">Edit</a>
+            
+            <a href="/dashboard" class="btn btn-default btn-sm">Done</a>
+            
             <hr>
 
 
@@ -85,6 +86,8 @@
 
 
     </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
     <script src="/main.js" type="text/javascript"></script>
 </body>
 
