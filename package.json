@@ -24,6 +24,7 @@
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "method-override": "^3.0.0",
+    "moment": "^2.24.0",
     "mongoose": "^5.4.16",
     "mongoose-type-email": "^1.0.10",
     "morgan": "^1.9.1",

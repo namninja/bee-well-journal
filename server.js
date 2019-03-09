@@ -12,8 +12,10 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const { PORT, DATABASE_URL } = require("./config/database.js");
 const SECRET = process.env.SECRET;
-
-
+var moment = require('moment');
+var shortDateFormat = "ddd, MMM DD, YYYY"; // this is just an example of storing a date format once so you can change it in one place and have it propagate
+app.locals.moment = moment; // this makes moment available as a variable in every EJS page
+app.locals.shortDateFormat = shortDateFormat;
 
 // configuration
 require('./config/passport'); // pass passport for configuration 
@@ -112,5 +114,6 @@ app.use("/", journalRouter)
   if (require.main === module) {
     runServer(DATABASE_URL).catch(err => console.error(err));
   }
-
+ 
+  
   module.exports = { app, runServer, closeServer };

@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+
+font name: FredokaOne-Regular
+font link: https://fonts.google.com/specimen/Fredoka+One
+font author: Milena Brandao
+font author site: mailto:milenabbrandao@gmail.com
+
+icon designer: Yi Chen
+icon designer link: /jsczcy
+        
+{"bg":"#EFF5E9","icon-gradient-0":"#666C35","icon-gradient-1":"#77D636","font":"#213210"}
+      

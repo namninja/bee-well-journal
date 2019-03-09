@@ -1,30 +1,18 @@
-<!doctype html>
-<html>
-<head>
-    <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> 
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <style>
-        body        { padding-top:80px; }
-    </style>
-</head>
+<%- include('head', {}); %>
+
 <body>
-<div class="container">
-
-    <div class="jumbotron text-center">
-        <h1><span class="fa fa-lock"></span> Node Authentication</h1>
-
-        <p>Login or Register with:</p>
-
-        <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
-        <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
-    </div>
-
-</div>
-<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-crossorigin="anonymous"></script>
-<script src="/main.js" type="text/javascript"></script>
+    <main>
+        <header role="banner" class="index-head">
+        </header>
+        <section class="landing">
+            <h2>Gratitude and Mindfulness can help you prepare and strengthen you for the rough patches of your life</h2>
+            <h2>Use the journal to check in with yourself and to stay focused on the things that matter</h2>
+            <p>Login or Register with:</p>
+            <a href="/login">Login</a>
+            <a href="/signup">Signup</a>
+        </section>
+    </main>
+    <%- include('scripts', {}); %>
 </body>
+
 </html>

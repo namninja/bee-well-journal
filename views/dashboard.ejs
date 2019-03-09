@@ -1,54 +1,26 @@
 <!-- views/profile.ejs -->
-<!doctype html>
-<html>
-<head>
-    <title>Bee Well Journal</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <style>
-        body        { padding-top:80px; word-wrap:break-word; }
-    </style>
-</head>
+<%- include('head', {}); %>
+
 <body>
-<div class="container">
-
-    <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-    </div>
-    <div class="row"></div>
-    <div class="col-sm-6">
-            <div id="plotly">
-            
-                </div>
-       
-        
-    </div>
-    <div class="row">
-
-        <!-- LOCAL INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well">
-          
-
-                    <a href="/create-journal" class="btn btn-default btn-sm">create new journal</a>
-                    <% for( let i= journals.length-1; i >= 0; i--) { %>
-                    <div>
-                        <a href="/journal/<%=journals[i]._id%>"><h2 class="dates"><%=journals[i].created%></h2></a> 
-                    </div>
-                    <% } %> 
-            </div>
+    <div>
+        <div class="page-header text-center">
+            <h1></span>Profile Page</h1>
+            <a href="/logout">Logout</a>
         </div>
-        
+        <div id="plotly">
+        </div>
+        <div class="well">
+            <a href="/create-journal">create new journal</a>
+            <% for( let i= journals.length-1; i >= 0; i--) { %>
+            <div>
+                <a href="/journal/<%=journals[i]._id%>">
+                    <h2 class="dates"><%=moment(journals[i].created).format(shortDateFormat)%></h2>
+                </a>
+            </div>
+            <% } %>
+        </div>
     </div>
-
-</div>
-<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-crossorigin="anonymous"></script>
-<script src="/main.js" type="text/javascript"></script>
-
-
+    <%- include('scripts', {}); %>
 </body>
 
 </html>

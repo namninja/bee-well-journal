@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const moment = require('moment');
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {

@@ -1,20 +1,5 @@
 <!-- views/profile.ejs -->
-<!doctype html>
-<html>
-
-<head>
-    <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <style>
-        body {
-            padding-top: 80px;
-            word-wrap: break-word;
-        }
-    </style>
-</head>
+<%- include('head', {}); %>
 
 <body>
     <div class="container">
@@ -22,11 +7,7 @@
         <div class="col-sm-6 col-sm-offset-3">
 
             <h1><span class="fa fa-sign-in"></span> Journal</h1>
-
-
-
-
-            <p><% console.log(journal[0].excitedAbout[0], "inside")%></p>
+            <p><%=moment(journal[0].created).format(shortDateFormat)%></p>
             <div class="form-group">
                 <h3>How do you feel this morning on a scale of 1-10</h3>
                 <p><%=journal[0].morningRating%></p>
@@ -74,10 +55,9 @@
                 <p><%=journal[0].journalEntry%></p>
             </div>
 
-            <button class="js-delete btn btn-default btn-sm" onclick="return confirm('WARNING! You are are about to delete this Journal')" data-key='<%=journal[0]._id%>'>Delete</button>
-            <a href="/create-journal/<%=journal[0]._id%>" class="btn btn-default btn-sm">Edit</a>
-            
-            <a href="/dashboard" class="btn btn-default btn-sm">Done</a>
+            <a href="#" class="js-delete" onclick="return confirm('WARNING! You are are about to delete this Journal')" data-key='<%=journal[0]._id%>'>Delete</a>
+            <a href="/create-journal/<%=journal[0]._id%>">Edit</a>
+            <a href="/dashboard" >Done</a>
             
             <hr>
 
@@ -86,9 +66,7 @@
 
 
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-    crossorigin="anonymous"></script>
-    <script src="/main.js" type="text/javascript"></script>
+    <%- include('scripts', {}); %>
 </body>
 
 </html>

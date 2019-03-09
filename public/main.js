@@ -1,6 +1,6 @@
 const SERVERBASE = "//evening-mesa-72855.herokuapp.com/";
 
-const LOCAL = 'http://localhost:8080/' 
+const LOCAL = 'http://localhost:8080/'
 
 const morning = {
   x: [],
@@ -16,12 +16,15 @@ const evening = {
   name: 'evening mood'
 };
 
-
 function getMorningMood(data) {
   console.log('getMorningMood ran')
+
   if (data.length > 30) {
-    for (let i = data.length - 30; i >= 0; i++) {
-      morningMood.push(data[i].morningRating)
+    for (let i = data.length - 30; i < data.length; i++) {
+      morning.y.push(data[i].morningRating)
+    }
+    for (q = 1; q <= 30; q++) {
+      morning.x.push(q)
     }
   } else {
     for (let i = 0; i < data.length; i++) {
@@ -34,9 +37,14 @@ function getMorningMood(data) {
 
 function getEveningMood(data) {
   console.log('getEveningMood ran')
+  console.log(data.length)
+
   if (data.length > 30) {
-    for (let i = data.length - 30; i >= 0; i++) {
-      eveningMood.push(data[i].eveningRating)
+    for (let i = data.length - 30; i < data.length; i++) {
+      evening.y.push(data[i].eveningRating)
+    }
+    for (q = 1; q <= 30; q++) {
+      evening.x.push(q)
     }
   } else {
     for (let i = 0; i < data.length; i++) {
@@ -70,7 +78,7 @@ function getMoodData() {
         showlegend: true,
         legend: { "orientation": "h" }
       };
-      Plotly.newPlot('plotly', data, layout, { showSendToCloud: true });
+      Plotly.newPlot('plotly', data, layout, {responsive: true});
     })
     //if reponse is not ok, then the error we threw will be passed as a parameter in the displayError function and rendered in DOM
     .catch(err => {
@@ -88,29 +96,29 @@ function deleteJournal(journalId) {
   console.log("Deleting journal `" + journalId + "`");
   const url = LOCAL + "delete-journal/" + journalId
   fetch(url, {
-      method: "DELETE",
+    method: "DELETE",
   })
-  .then(response => {
-    if (response.ok) {
-      console.log('Journal ' + journalId + ' successfully deleted')
-      window.open( '/dashboard', '_top')
-    }
-    //if reponse is not ok,then throw an error
-    throw new Error(response.statusText);
-  })
-  //if reponse is not ok, then the error we threw will be passed as a parameter in the displayError function and rendered in DOM
-  .catch(err => {
-    console.log(err.message);
-  });
-  
+    .then(response => {
+      if (response.ok) {
+        console.log('Journal ' + journalId + ' successfully deleted')
+        window.open('/dashboard', '_top')
+      }
+      //if reponse is not ok,then throw an error
+      throw new Error(response.statusText);
+    })
+    //if reponse is not ok, then the error we threw will be passed as a parameter in the displayError function and rendered in DOM
+    .catch(err => {
+      console.log(err.message);
+    });
+
 }
 function handleJournalDelete() {
-  $(".js-delete").on("click", function(e) {
-      e.preventDefault();
-      deleteJournal(
-          $(e.currentTarget)
-              .attr("data-key")
-      );
+  $(".js-delete").on("click", function (e) {
+    e.preventDefault();
+    deleteJournal(
+      $(e.currentTarget)
+        .attr("data-key")
+    );
   });
 }
 $(function () {

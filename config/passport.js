@@ -42,14 +42,21 @@ passport.use('local-signup', new LocalStrategy({
         console.log(email)
         console.log(password)
         let emailv;
+        let passwordv;
         if (email) {
             email = email.toLowerCase(); // Use lower-case e-mails to avoid case-sensitive e-mail matching
             emailv = req.body.emailv.toLowerCase();
+            passwordv = req.body.passwordv;
         }
         if (!(email === emailv)) {
-            // let err = "Emails do not match"
+            
             // throw(err)
             return done(null, false, req.flash('signupMessage', 'Emails do not match.'));
+        } 
+        if (!(password === passwordv)) {
+           
+            // throw(err)
+            return done(null, false, req.flash('signupMessage', 'Passwords do not match.'));
         }
         // asynchronous
         // User.findOne wont fire unless data is sent back

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const moment = require('moment');
 
 const journalSchema = mongoose.Schema({
 
@@ -7,7 +7,6 @@ const journalSchema = mongoose.Schema({
   morningRating: Number,
   excitedAbout: [String],
   priorities: [String],
-  toDoList: [String],
   eveningRating: Number,
   describeToday: [String],
   todayWins: [String],
@@ -32,6 +31,21 @@ journalSchema.methods.moodData = function () {
     morningRating: this.morningRating,
     eveningRating: this.eveningRating,
     created: this.created
+  };
+};
+journalSchema.methods.serialize = function () {
+  return {
+    created: moment(this.created).format("ddd, MMM DD, YYYY"),
+  morningRating: this.morningRating,
+  excitedAbout: this.excitedAbout,
+  priorities: this.priorities,
+  eveningRating: this.eveningRating,
+  describeToday: this.describeToday,
+  todayWins: this.todayWins,
+  toImprove: this.toImprove,
+  gratitude: this.gratitude,
+  journalEntry: this.journalEntry,
+  user: this.user
   };
 };
 module.exports = mongoose.model('Journal', journalSchema);
