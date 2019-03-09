@@ -16,6 +16,23 @@ function isLoggedIn(req, res, next) {
     res.redirect('/');
 }
 
+// Dashboard SECTION =====================
+    // we will want this protected so you have to be logged in to visit
+    // we will use route middleware to verify this (the isLoggedIn function)
+    router.get('/dashboard', isLoggedIn, function (req, res) {
+        Journal.find({"user" : req.user.id}, function(err, journal) {
+            if(err) {
+                res.status(500).send(err);
+            } else {
+        res.render('dashboard.ejs', {
+            user: req.user,
+            journals: journal
+           
+              // get the user out of session and pass to template
+        });
+    }});
+});
+
 router.get('/mood-data', isLoggedIn, function (req, res) {
     console.log(req)
     Journal.find({user: req.user._id})

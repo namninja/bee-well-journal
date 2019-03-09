@@ -1,16 +1,24 @@
+body * {
+    box-sizing: border-box;
+  }
+  body, html {
+      height: 100%;
+  }
+  
 main {
-    background-color: #FFFFFF;
-    background-image: url('img/beautiful-beauty-bee.jpg');
-    background-repeat: no-repeat;
-    background-size: 100%; 
-    background-position: center; 
     background-color: #EFF5E9;
+    background-image: url('img/icon.png');
+    background-repeat: no-repeat;
+    height: 100%; 
+    background-size: cover; 
+    background-position: center 
+    
 }
-.index-head {
+/* .index-head {
 
     box-shadow:0px 0px 10px black;
     height: 300px;
-}
+} */
 .landing {
     text-align: center;
 }

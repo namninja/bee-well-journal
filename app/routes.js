@@ -1,25 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const moment = require('moment');
+
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
-
     // if user is authenticated in the session, carry on 
     if (req.isAuthenticated())
         return next();
-
     // if they aren't redirect them to the home page
     res.redirect('/');
 }
 
-const Journal = require('./models/journal');
-
-
-
-
-    //journalRoutes(app, passport);
 
     // HOME PAGE (with login links) 
     router.get('/', function (req, res) {
@@ -41,7 +33,8 @@ const Journal = require('./models/journal');
     router.post('/login', passport.authenticate('local-login', {
         successRedirect: '/dashboard', // redirect to the secure profile section
         failureRedirect: '/login', // redirect back to the signup page if there is an error
-        failureFlash: true // allow flash messages
+        failureFlash: true, // allow flash messages
+        
     }));
 
     // show the signup form
@@ -58,22 +51,7 @@ const Journal = require('./models/journal');
     }));
 
 
-    // PROFILE SECTION =====================
-    // we will want this protected so you have to be logged in to visit
-    // we will use route middleware to verify this (the isLoggedIn function)
-    router.get('/dashboard', isLoggedIn, function (req, res) {
-        Journal.find({"user" : req.user.id}, function(err, journal) {
-            if(err) {
-                res.status(500).send(err);
-            } else {
-        res.render('dashboard.ejs', {
-            user: req.user,
-            journals: journal
-           
-              // get the user out of session and pass to template
-        });
-    }});
-});
+    
 
     // LOGOUT ==============================
     router.get('/logout', function (req, res) {
