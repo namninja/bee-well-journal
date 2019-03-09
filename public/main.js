@@ -1,4 +1,4 @@
-const SERVERBASE = "//evening-mesa-72855.herokuapp.com/";
+const SERVERBASE = "//gentle-chamber-86652.herokuapp.com/";
 
 const LOCAL = 'http://localhost:8080/'
 
@@ -58,7 +58,7 @@ function getEveningMood(data) {
 
 function getMoodData() {
   console.log('getMoodData ran')
-  const url = LOCAL + 'mood-data'
+  const url = SERVERBASE + 'mood-data'
   fetch(url)
     .then(response => {
       if (response.ok) {
@@ -94,7 +94,7 @@ function displayError(error) {
 }
 function deleteJournal(journalId) {
   console.log("Deleting journal `" + journalId + "`");
-  const url = LOCAL + "delete-journal/" + journalId
+  const url = SERVERBASE + "delete-journal/" + journalId
   fetch(url, {
     method: "DELETE",
   })
