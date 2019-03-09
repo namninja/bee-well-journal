@@ -1,2 +1,9 @@
 language: node_js
 node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: SwbgybmB0TJK961lgTzZwdsXLUxE5RZN8itpTLtVNIYtrishaN7a/i9dBoaB2cSMhWFrDNtAnyLWV6BL7bMqSqKr0nlGHRvLUthr3aj/u++OShCHLyomkKPi3KtR2S2YauH8kyURkmdJMYBhkB5QVOa3c0rwAh9valmPDCkqwhZPm/iH9EPy4oXCznPL72egvXq/zctqlDJSp+GJ5nWYpHDNKW0nYfPgQz6AB1q+4fMNq050cjfkq1QJuyghk5AT/9Q7oyU3qWDT1p0ASqdfCPhEqorgZn/gkssxgFfjJUej0NIUW9ARur/ayfpFUBOMmBSNbSSouw369tmp15eP6WMwQGntRRNFh0RFf/FFjjeCx6U8fbKkJQ3MSeRtlVn9aV6aNWzfQkpgm3xEPa/uYKr+PFo5TzPxme36VXbk+zVDf9Dv2+xbMNYXwrAzZMn9wKOYkIswnKJvCiHQrFP3/pBSNjb6ftmZ3KnovLENLnJgc6MB8HC8+AtXkWoZDLIU+eibbNMf/90lsn/oBQzSACv4Q5qqOyhNbyM1pxxnbGKz7oQrRFJVIOETX0qWDDsm3ZkkaOB2gGXHg+j1PRR9bfGdTc6tRFh6GSPeb3tzIwxC07mJcnHcoDY0MUy6YXQ0kDvRj3nAP6GqVHNP2imKDlelzIp5Fb3iiTYY79NjLpo=
+  app: gentle-chamber-86652
+  on:
+    repo: namninja/bee-well-journal
