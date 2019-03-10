@@ -56,7 +56,7 @@ router.get('/create-journal', isLoggedIn, function (req, res) {
 
 
 
-router.post('/create-journal',  jsonParser, function(req, res) {
+router.post('/create-journal',  isLoggedIn, jsonParser, function(req, res) {
     // const newEntry = new Journal(req.body)
     
     User.findById(req.user._id)
