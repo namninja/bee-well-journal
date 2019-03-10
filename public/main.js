@@ -22,14 +22,13 @@ function getMorningMood(data) {
   if (data.length > 30) {
     for (let i = data.length - 30; i < data.length; i++) {
       morning.y.push(data[i].morningRating)
+      morning.x.push(data[i].created)
     }
-    for (q = 1; q <= 30; q++) {
-      morning.x.push(q)
-    }
+   
   } else {
     for (let i = 0; i < data.length; i++) {
       morning.y.push(data[i].morningRating)
-      morning.x.push(i + 1)
+      morning.x.push(data[i].created)
     }
   }
   console.log(morning)
@@ -42,14 +41,12 @@ function getEveningMood(data) {
   if (data.length > 30) {
     for (let i = data.length - 30; i < data.length; i++) {
       evening.y.push(data[i].eveningRating)
-    }
-    for (q = 1; q <= 30; q++) {
-      evening.x.push(q)
+      evening.x.push(data[i].created)
     }
   } else {
     for (let i = 0; i < data.length; i++) {
       evening.y.push(data[i].eveningRating)
-      evening.x.push(i + 1)
+      evening.x.push(data[i].created)
     }
   }
   console.log(evening)
@@ -58,7 +55,7 @@ function getEveningMood(data) {
 
 function getMoodData() {
   console.log('getMoodData ran')
-  const url = SERVERBASE + 'mood-data'
+  const url = LOCAL + 'mood-data'
   fetch(url)
     .then(response => {
       if (response.ok) {
@@ -75,8 +72,17 @@ function getMoodData() {
     .then(() => {
       var data = [morning, evening];
       var layout = {
+        title: {
+          text:'30 Day Mood Meter',
+          font: {
+            family: 'sans-serif',
+            size: 24
+          },
+          xref: 'paper',
+         
+        },
         showlegend: true,
-        legend: { "orientation": "h" }
+        legend: { "orientation": "v" }
       };
       Plotly.newPlot('plotly', data, layout, {responsive: true});
     })
@@ -94,7 +100,7 @@ function displayError(error) {
 }
 function deleteJournal(journalId) {
   console.log("Deleting journal `" + journalId + "`");
-  const url = SERVERBASE + "delete-journal/" + journalId
+  const url = LOCAL + "delete-journal/" + journalId
   fetch(url, {
     method: "DELETE",
   })
