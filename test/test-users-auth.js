@@ -100,6 +100,7 @@ describe('User API resource', function () {
                     let res;
                     return chai.request(app)
                         .post('/login')
+                        .send(logUser)
                         .then(function (_res) {
                             res = _res;
                             expect(res).to.have.status(200);
