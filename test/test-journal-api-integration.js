@@ -23,7 +23,7 @@ function seedJournalData() {
     // this will return a promise
     return Journal.insertMany(seedData);
 }
-function generateBlogData() {
+function generateJournalData() {
     var things = []
     for (let i = 0; i < 3; i++) {
         things.push(faker.lorem.sentence())

@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 
 const expect = chai.expect;
 
-const  User  = require('../app/models/user');
+const User = require('../app/models/user');
 const { app, runServer, closeServer } = require('../server');
 const { TEST_DATABASE_URL } = require('../config/database');
 
@@ -62,9 +62,12 @@ describe('User API resource', function () {
         // strategy:
         // 1. render the home page
         it('should render the homepage page', function () {
+            let res;
             return chai.request(app)
                 .get('/login')
-                .then(function () {
+                .then(function (_res) {
+                    res = _res;
+                    expect(res).to.have.status(200);
                     expect('Location', '/')
                 })
         });
@@ -73,32 +76,36 @@ describe('User API resource', function () {
         // strategy:
         // 1. render the login page
         it('should render the login page', function () {
+            let res;
             return chai.request(app)
                 .get('/login')
-                .then(function () {
-                    expect('Location', '/login')
+                .then(function (_res) {
+                    res = _res;
+                    expect(res).to.have.status(200);
+                    expect('Location', '/login');
                 })
         });
     });
-    // describe('POST login endpoint', function () {
-    //     // strategy:
-    //     // 1. get and existing log in from the DB
-    //     // 2. make a POST request and get redirected to user dashboard
-    //     it('should render the dashboard page', function () {
-    //         const logUser = {
-    //             email: testEmail,
-    //             passwrod: testPassword
-    //         }
-    //         return User.findOne() 
-    //         .then(function(user) {
-    //             logUser.email = user.email
-    //             logUser.password = user.password
-    //         }
-    //         return chai.request(app)
-    //             .get('/login')
-    //             .then(function () {
-    //                 expect('Location', '/login')
-    //             })
-    //     });
-    // });
+    describe('POST login endpoint', function () {
+        // strategy:
+        // 1. get and existing log in from the DB
+        // 2. make a POST request and get redirected to user dashboard
+        it('should render the dashboard page', function () {
+            const logUser = {
+            }
+            return User.findOne()
+                .then(function (user) {
+                    logUser.email = user.email
+                    logUser.password = user.password
+                    let res;
+                    return chai.request(app)
+                        .post('/login')
+                        .then(function (_res) {
+                            res = _res;
+                            expect(res).to.have.status(200);
+                            expect('Location', '/dashboard')
+                        })
+                })
+        });
+    });
 });

@@ -103,7 +103,7 @@ router.get('/create-journal/:id',isLoggedIn, function (req, res) {
 
 router.post('/create-journal/:id',isLoggedIn, function (req, res) {
     
- 
+ console.log(req.body)
     Journal
         .findOneAndUpdate({_id:req.params.id},req.body, {new : true})
         .then(journal => res.redirect("/journal/"+req.params.id))
