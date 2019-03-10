@@ -56,7 +56,7 @@ describe('User API resource', function () {
     });
 
     afterEach(function () {
-        // return tearDownDb();
+        return tearDownDb();
     });
 
     after(function () {
@@ -92,11 +92,11 @@ describe('User API resource', function () {
     });
     describe('POST login endpoint', function () {
         // strategy:
-        // 1. get and existing log in from the DB
+        // 1. create a user then log in as that user
         // 2. make a POST request and get redirected to user dashboard
         it('should render the dashboard page', function () {
             let res;
-            let newUser = {
+            let logUser = {
                 email: 'test@test.com',
                 emailv: 'test@test.com',
                 password: 'test',
@@ -105,29 +105,25 @@ describe('User API resource', function () {
             return chai.request(app)
                 .post('/signup')
                 .set('content-type', 'application/x-www-form-urlencoded')
-                .send(newUser)
-                .then( function (_res) {
-                res =_res;
-                expect(res).to.have.status(200);
-                expect('Location', '/signup');
-                console.log( User.findOne({"email": newUser.email}),'----tttttttttttt')
+                .send({
+                    email: 'test@test.com',
+                    emailv: 'test@test.com',
+                    password: 'test',
+                    passwordv: 'test'
                 })
-
-            
-                // .then(function (user) {
-                //     logUser.email = user.email
-                //     logUser.password = user.password
-                //     console.log(user, '3333333333333333333333333333')
-                //     let res;
-                //     return chai.request(app)
-                //         .post('/login')
-                //         .send(logUser)
-                //         .then(function (_res) {
-                //             res = _res;
-                //             expect(res).to.have.status(200);
-                //             expect('Location', '/dashboard')
-                //         })
-                // })
+                .then(function (_res) {
+                    res = _res;
+                    expect(res).to.have.status(200);
+                    return chai.request(app)
+                        .post('/login')
+                        .set('content-type', 'application/x-www-form-urlencoded')
+                        .send(logUser)
+                        .then(function (_res) {
+                            res = _res;
+                            expect(res).to.have.status(200);
+                            expect('Location', '/dashboard')
+                        })
+                })
         });
     });
     describe('GET signup endpoint', function () {
@@ -144,30 +140,31 @@ describe('User API resource', function () {
                 })
         });
     });
-    // describe('POST signup endpoint', function () {
-    //     // strategy:
-    //     // 1. get and existing log in from the DB
-    //     // 2. make a POST request and get redirected to user dashboard
-    //     it('should render the dashboard page', function () {
-
-    //         const newUser = generateUserData()
-    //         console.log(newUser, '----------------------new')
-    //         let res;
-    //         return chai.request(app)
-    //             .post('/signup')
-    //             .send(newUser)
-    //             .then(function (_res) {
-    //                 res = _res;
-    //                 expect(res).to.have.status(200);
-    //                 expect('Location', '/dashboard')
-    //                 console.log(res.body.id, '---------------------------------yoyoyoy')
-    //                 return User.findOne({ "email": newUser.email }); // need help here
-    //             })
-    //             .then(function (user) {
-    //                 console.log(user, '------------------user')
-    //                 expect(user.email).to.equal(newUser.email);
-    //                 expect(user.password).to.equal(newUser.password);
-    //             })
-    //     })
-    // });
+    describe('POST signup endpoint', function () {
+        //     // strategy:
+        //     // 1. get and existing log in from the DB
+        //     // 2. make a POST request and get redirected to user dashboard
+        it('should render the dashboard page', function () {
+            let res;
+            let logUser = {
+                email: 'test@test.com',
+                emailv: 'test@test.com',
+                password: 'test',
+                passwrodv: 'test'
+            }
+            return chai.request(app)
+                .post('/signup')
+                .set('content-type', 'application/x-www-form-urlencoded')
+                .send({
+                    email: 'test@test.com',
+                    emailv: 'test@test.com',
+                    password: 'test',
+                    passwordv: 'test'
+                })
+                .then(function (_res) {
+                    res = _res;
+                    expect(res).to.have.status(200);
+                });
+        });
+    });
 });
