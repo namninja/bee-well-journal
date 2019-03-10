@@ -17,7 +17,7 @@ function seedJournalData() {
     console.info('seeding journal data');
     const seedData = [];
 
-    for (let i = 1; i <= 31; i++) {
+    for (let i = 1; i <= 10; i++) {
         seedData.push(generateJournalData());
     }
     // this will return a promise
@@ -61,3 +61,38 @@ function tearDownDb() {
     return mongoose.connection.dropDatabase();
 }
 
+describe('User API resource', function () {
+    // we need each of these hook functions to return a promise
+    // otherwise we'd need to call a `done` callback. `runServer`,
+    // `seedBlogData` and `tearDownDb` each return a promise,
+    // so we return the value returned by these function calls.
+    before(function () {
+        return runServer(TEST_DATABASE_URL);
+    });
+
+    beforeEach(function () {
+
+    });
+
+    afterEach(function () {
+        return tearDownDb();
+    });
+
+    after(function () {
+        return closeServer();
+    });
+
+    describe('GET login endpoint', function () {
+        // strategy:
+        // 1. render the login page
+        it('should render the login page', function () {
+            let res;
+            return chai.request(app)
+                .get('/login')
+                .then(function (_res) {
+                    res = _res;
+                    expect(res).to.have.status(200);
+                })
+        });
+    });
+});
