@@ -58,19 +58,47 @@ describe('User API resource', function () {
     after(function () {
         return closeServer();
     });
-
-    describe('GET login endpoint', function () {
+    describe('GET / endpoint', function () {
         // strategy:
-        // render the login page
-        it('should render the login page', function () {
-            let res;
+        // 1. render the home page
+        it('should render the homepage page', function () {
             return chai.request(app)
                 .get('/login')
-                .then(function (_res) {
-                    console.log(_res, '--------------------look')
-                    res = _res;
+                .then(function () {
+                    expect('Location', '/')
+                })
+        });
+    });
+    describe('GET login endpoint', function () {
+        // strategy:
+        // 1. render the login page
+        it('should render the login page', function () {
+            return chai.request(app)
+                .get('/login')
+                .then(function () {
                     expect('Location', '/login')
                 })
         });
     });
+    // describe('POST login endpoint', function () {
+    //     // strategy:
+    //     // 1. get and existing log in from the DB
+    //     // 2. make a POST request and get redirected to user dashboard
+    //     it('should render the dashboard page', function () {
+    //         const logUser = {
+    //             email: testEmail,
+    //             passwrod: testPassword
+    //         }
+    //         return User.findOne() 
+    //         .then(function(user) {
+    //             logUser.email = user.email
+    //             logUser.password = user.password
+    //         }
+    //         return chai.request(app)
+    //             .get('/login')
+    //             .then(function () {
+    //                 expect('Location', '/login')
+    //             })
+    //     });
+    // });
 });
