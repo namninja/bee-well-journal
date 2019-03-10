@@ -4,6 +4,8 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const faker = require('faker');
 const mongoose = require('mongoose');
+const request = require('supertest');
+const superagent = require('superagent')
 
 const expect = chai.expect;
 
@@ -37,20 +39,7 @@ describe('User API resource', function () {
     after(function () {
         return closeServer();
     });
-    describe('GET / endpoint', function () {
-        // strategy:
-        // 1. render the home page
-        it('should render the homepage page', function () {
-            let res;
-            return chai.request(app)
-                .get('/login')
-                .then(function (_res) {
-                    res = _res;
-                    expect(res).to.have.status(200);
-                    expect('Location', '/')
-                })
-        });
-    });
+
     describe('GET login endpoint', function () {
         // strategy:
         // 1. render the login page
@@ -61,7 +50,6 @@ describe('User API resource', function () {
                 .then(function (_res) {
                     res = _res;
                     expect(res).to.have.status(200);
-                    expect('Location', '/login');
                 })
         });
     });
@@ -96,7 +84,6 @@ describe('User API resource', function () {
                         .then(function (_res) {
                             res = _res;
                             expect(res).to.have.status(200);
-                            expect('Location', '/dashboard')
                         })
                 })
         });
@@ -111,7 +98,6 @@ describe('User API resource', function () {
                 .then(function (_res) {
                     res = _res;
                     expect(res).to.have.status(200);
-                    expect('Location', '/signup');
                 })
         });
     });
@@ -121,6 +107,12 @@ describe('User API resource', function () {
         //     // 2. make a POST request and get redirected to user dashboard
         it('should render the dashboard page', function () {
             let res;
+            let newUser = {
+                email: 'test@test.com',
+                emailv: 'test@test.com',
+                password: 'test',
+                passwrodv: 'test'
+            }
             return chai.request(app)
                 .post('/signup')
                 .set('content-type', 'application/x-www-form-urlencoded')
@@ -133,8 +125,17 @@ describe('User API resource', function () {
                 .then(function (_res) {
                     res = _res;
                     expect(res).to.have.status(200);
-                    expect('Location', '/signup');
+                    return User.findOne({"email": newUser.email });
+                })
+                .then(function (user) {
+                    expect(user).to.not.be.null;
+                    expect(user.email).to.equal(newUser.email);
+                    return user.validPassword(newUser.password);
+                })
+                .then(function(passwordIsCorrect) {
+                    expect(passwordIsCorrect).to.be.true;
                 });
+                
         });
     });
 });
