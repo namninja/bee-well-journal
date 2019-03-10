@@ -13,31 +13,6 @@ const { TEST_DATABASE_URL } = require('../config/database');
 
 chai.use(chaiHttp);
 
-function seedUserData() {
-    console.info('seeding blog data');
-    const seedData = [];
-
-    for (let i = 1; i <= 3; i++) {
-        seedData.push(generateUserData());
-    }
-    // this will return a promise
-    return chai.request(app)
-        .post('/signup')
-        .send(newUser);
-}
-
-const toUrlEncoded = obj => Object.keys(obj).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(obj[k])).join('&');
-
-function generateUserData() {
-    let testEmail = faker.internet.email()
-    let testPassword = faker.lorem.words(1)
-    return {
-        email: testEmail,
-        emailv: testEmail,
-        password: testPassword,
-        passwrodv: testPassword
-    }
-};
 function tearDownDb() {
     console.warn('Deleting database');
     return mongoose.connection.dropDatabase();
@@ -146,12 +121,6 @@ describe('User API resource', function () {
         //     // 2. make a POST request and get redirected to user dashboard
         it('should render the dashboard page', function () {
             let res;
-            let logUser = {
-                email: 'test@test.com',
-                emailv: 'test@test.com',
-                password: 'test',
-                passwrodv: 'test'
-            }
             return chai.request(app)
                 .post('/signup')
                 .set('content-type', 'application/x-www-form-urlencoded')
@@ -164,6 +133,7 @@ describe('User API resource', function () {
                 .then(function (_res) {
                     res = _res;
                     expect(res).to.have.status(200);
+                    expect('Location', '/signup');
                 });
         });
     });
