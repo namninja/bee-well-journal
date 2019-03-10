@@ -51,9 +51,9 @@ describe('User API resource', function () {
         return seedUserData();
     });
 
-    afterEach(function () {
-        return tearDownDb();
-    });
+    // afterEach(function () {
+    //     return tearDownDb();
+    // });
 
     after(function () {
         return closeServer();
@@ -107,5 +107,45 @@ describe('User API resource', function () {
                         })
                 })
         });
+    });
+    describe('GET signup endpoint', function () {
+        // strategy:
+        // 1. render the login page
+        it('should render the login page', function () {
+            let res;
+            return chai.request(app)
+                .get('/signup')
+                .then(function (_res) {
+                    res = _res;
+                    expect(res).to.have.status(200);
+                    expect('Location', '/signup');
+                })
+        });
+    });
+    describe('POST signup endpoint', function () {
+        // strategy:
+        // 1. get and existing log in from the DB
+        // 2. make a POST request and get redirected to user dashboard
+        it('should render the dashboard page', function () {
+
+            const newUser = generateUserData()
+            console.log(newUser,'----------------------new')
+            let res;
+            return chai.request(app)
+                .post('/signup')
+                .send(newUser)
+                .then(function (_res) {
+                    res = _res;
+                    expect(res).to.have.status(200);
+                    expect('Location', '/dashboard')
+                    console.log(res.body.id, '---------------------------------yoyoyoy')
+                    return User.findOne({"email": newUser.email}); // need help here
+                })
+                .then(function(user) {
+                    console.log(user,'------------------user')
+                    expect(user.email).to.equal(newUser.email);
+                    expect(user.password).to.equal(newUser.password);
+                })
+        })
     });
 });
