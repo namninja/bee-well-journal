@@ -51,9 +51,9 @@ describe('User API resource', function () {
         return seedUserData();
     });
 
-    // afterEach(function () {
-    //     return tearDownDb();
-    // });
+    afterEach(function () {
+        return tearDownDb();
+    });
 
     after(function () {
         return closeServer();
@@ -97,6 +97,7 @@ describe('User API resource', function () {
                 .then(function (user) {
                     logUser.email = user.email
                     logUser.password = user.password
+                    console.log(user,'3333333333333333333333333333')
                     let res;
                     return chai.request(app)
                         .post('/login')
