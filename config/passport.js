@@ -38,9 +38,6 @@ passport.use('local-signup', new LocalStrategy({
     passReqToCallback: true // allows us to pass back the entire request to the callback
 },
     function (req, email, password, done) {
-        console.log(req.body.emailv, '------------------------------------')
-        console.log(email)
-        console.log(password)
         let emailv;
         let passwordv;
         if (email) {

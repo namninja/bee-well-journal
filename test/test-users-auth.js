@@ -32,7 +32,7 @@ describe('User API resource', function () {
     });
 
     afterEach(function () {
-        return tearDownDb();
+        // return tearDownDb();
     });
 
     after(function () {
@@ -101,9 +101,9 @@ describe('User API resource', function () {
         });
     });
     describe('POST signup endpoint', function () {
-        //     // strategy:
-        //     // 1. get and existing log in from the DB
-        //     // 2. make a POST request and get redirected to user dashboard
+        // strategy:
+        // 1. get and existing log in from the DB
+        // 2. make a POST request and get redirected to user dashboard
         it('should render the dashboard page', function () {
             let res;
             let newUser = {

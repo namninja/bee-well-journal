@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 const User = require('./models/user')
 const Journal = require('./models/journal');
-const moment = require('moment');
+
 
 function isLoggedIn(req, res, next) {
 
@@ -33,8 +33,8 @@ function isLoggedIn(req, res, next) {
     }});
 });
 
+// This route provides data for the dashboard visualization. It is called on the front end.
 router.get('/mood-data', isLoggedIn, function (req, res) {
-    console.log(req)
     Journal.find({user: req.user._id})
       .then(journals => {
         console.log(journals.length)

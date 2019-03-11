@@ -7,7 +7,8 @@ const mongoose = require('mongoose');
 
 const expect = chai.expect;
 
-const { Journal } = require('../app/models/journal');
+const Journal = require('../app/models/journal');
+const User = require('../app/models/user');
 const { app, runServer, closeServer } = require('../server');
 const { TEST_DATABASE_URL } = require('../config/database');
 
@@ -17,13 +18,14 @@ function seedJournalData() {
     console.info('seeding journal data');
     const seedData = [];
 
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= 5; i++) {
         seedData.push(generateJournalData());
     }
     // this will return a promise
     return Journal.insertMany(seedData);
 }
-function generateJournalData() {
+function generateJournalData(id) {
+    const testID = User.findOne({ "email": 'test@journaltest.com' });
     var things = []
     for (let i = 0; i < 3; i++) {
         things.push(faker.lorem.sentence())
@@ -47,11 +49,24 @@ function generateJournalData() {
         toImprove: faker.lorem.sentences(),
         gratitude: things,
         journalEntry: faker.lorem.sentences(),
-        user: "5c8324506c9fbb5e7081ec21"
+        user: testID._id
 
     };
 }
 
+function createTestUser() {
+    return chai.request(app)
+        .post('/signup')
+        .set('content-type', 'application/x-www-form-urlencoded')
+        .send({
+            email: 'test@journaltest.com',
+            emailv: 'test@journaltest.com',
+            password: 'test',
+            passwordv: 'test'
+        })
+        .end(function () {
+        })
+}
 // this function deletes the entire database.
 // we'll call it in an `afterEach` block below
 // to ensure data from one test does not stick
@@ -71,7 +86,8 @@ describe('User API resource', function () {
     });
 
     beforeEach(function () {
-
+        createTestUser();
+        return seedJournalData();
     });
 
     afterEach(function () {
@@ -82,17 +98,80 @@ describe('User API resource', function () {
         return closeServer();
     });
 
-    describe('GET login endpoint', function () {
+    describe('GET dashboard endpoint', function () {
         // strategy:
-        // 1. render the login page
-        it('should render the login page', function () {
+        // 1. create a user sign in
+        it('should log in the user and render dashboard page', function () {
             let res;
+            let logUser = {
+                email: 'test@journaltest.com',
+                password: 'test'
+            }
             return chai.request(app)
-                .get('/login')
+                .post('/login')
+                .set('content-type', 'application/x-www-form-urlencoded')
+                .send({
+                    email: 'test@journaltest.com',
+                    password: 'test'
+                })
                 .then(function (_res) {
                     res = _res;
                     expect(res).to.have.status(200);
+                    return User.findOne({ "email": logUser.email });
                 })
+                .then(function (user) {
+                    expect(user).to.not.be.null;
+                    expect(user.email).to.equal(logUser.email);
+                    return user.validPassword(logUser.password);
+                })
+                .then(function (passwordIsCorrect) {
+                    expect(passwordIsCorrect).to.be.true;
+                });
         });
     });
+   
+    // describe('GET mood-data endpoint', function () {
+    //     // strategy:
+    //     // 1. create a user sign in
+    //     it('should provide collection of JSON data of user mood data', function () {
+    //         let res;
+    //         let resData;
+    //         let logUser = {
+    //             email: 'test@journaltest.com',
+    //             password: 'test'
+    //         }
+    //         return chai.request(app)
+    //             .post('/login')
+    //             .set('content-type', 'application/x-www-form-urlencoded')
+    //             .send({
+    //                 email: 'test@journaltest.com',
+    //                 password: 'test'
+    //             })
+    //             .then(function (req, res, next) {
+    //                 isLoggedIn(req, res, next)
+    //             })
+    //             .then(function () {
+    //                 return chai.request(app)
+    //                 .get('/mood-data')
+    //                 .then(function(_res) {
+    //                     res = _res;
+    //                     console.log(res.body,'000000000000000000000000000')
+    //                     expect(res).to.have.status(200);
+    //                     expect(res).to.be.json;
+    //                     expect(res.body).to.be.a('array');
+    //                     expect(res.body).to.have.lengthOf.at.least(1);
+    //                     res.body.forEach(function(data) {
+    //                         expect(data).to.be.a('object');
+    //                         expect(data).to.include.keys(
+    //                           'morningRating', 'eveningRating', 'created');
+    //                       });
+    //                       resData = res.body[0];
+    //                       console.log(resData.id)
+    //                       return Journal.resData.id
+    //                 })
+    //             })
+
+
+    //     });
+    // });
 });
