@@ -1,50 +1,265 @@
 body * {
     box-sizing: border-box;
-   
-  }
-  body, html {
-      height: 100%;
-  }
-  body {
-    background-color: #EFF5E9;
-    background-image: url('img/icon.png');
-    background-repeat: no-repeat;
-    background-position: center left;
-  }
+    color: #213210;
+}
 
-#main-index {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    border: 1px solid black;
+body, html {
     height: 100%;
 }
 
-.landing-title {
-    font-family: 'Fredoka One', cursive;
-    font-size: 5em;
-    color: #213210;
-}
-.landing {
-    text-align: left;
-    padding: 3%;
-    /* background-color: rgba(255, 255, 255, 0.684); */
-    /* background-color: rgba(248, 155, 118, 0.575); */
-     /* background-color: rgba(3, 3, 3, 0.39); */
-    border-radius: 25px;
-    /* box-shadow:0px 0px 10px black; */
-    /* max-width: 650px; */
-    margin: 20px;
-}
-.landing-detail {
-    text-align: right;
-    padding: 3%;
-    /* background-color: rgba(255, 255, 255, 0.684); */
-    /* background-color: rgba(248, 155, 118, 0.575); */
-     /* background-color: rgba(3, 3, 3, 0.39); */
-    border-radius: 25px;
-    /* box-shadow:0px 0px 10px black; */
-    max-width: 700px;
-    margin: 5%;
+body {
+    background-color: #EFF5E9;
+    font-family: 'Merriweather', serif;
 }
 
+.hidden {
+    display: none;
+    visibility: hidden;
+}
+
+.links {
+    color: blue;
+    text-decoration: underline;
+}
+
+.links:hover {
+    text-decoration: none;
+}
+
+.links:active {
+    color: black;
+}
+
+.links:visited {
+    color: purple;
+}
+
+.btn {
+    display: inline-block;
+    border: none;
+    padding: 1rem 2rem;
+    margin: 0;
+    text-decoration: none;
+    background: #F89A76;
+    color: #ffffff;
+    font-family: "Raleway", sans-serif;
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background 250ms ease-in-out, transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.btn:hover, .btn:focus {
+    background: #666C35;
+}
+
+.btn:focus {
+    outline: 1px solid #fff;
+    outline-offset: -4px;
+}
+
+.btn:active {
+    transform: scale(0.99);
+}
+
+.keyword {
+    font-style: italic;
+}
+
+#main-index {
+    background: url('img/icon_50.png') no-repeat center center;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bee-well-title {
+    font-family: 'Fredoka One', cursive;
+    text-align: center;
+    color: #213210;
+    font-size: 2rem;
+    margin: .75rem;
+}
+
+.landing {
+    text-align: center;
+    color: #213210;
+    margin: 10px;
+}
+
+.landing-content {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 0 auto;
+}
+
+.landing-detail {
+    text-align: center;
+    color: #213210;
+    padding: 0 .5rem;
+}
+
+.landing-auth {
+    flex-shrink: 0;
+    text-align: center;
+    color: #213210;
+}
+
+#auth-label {
+    padding: 10px;
+    font-size: 1.25rem;
+}
+
+#auth-btns {
+    font-family: 'Fredoka One', cursive;
+}
+
+#copyright {
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.alert {
+    padding: 12px;
+    background-color: #f44336b2;
+    color: white;
+    margin: 5px;
+}
+
+.form-sign, .form-log {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 25px;
+    padding: 15px;
+}
+
+.sign-head, .log-head {
+    font-family: 'Fredoka One', cursive;
+    font-size: 38px;
+}
+
+.sign-form, .log-form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.form-group {
+    margin-bottom: 1rem
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+.form-text {
+    margin: 0;
+    padding: .375rem .75rem;
+}
+@media (prefers-reduced-motion:reduce) {
+    .form-control {
+        transition: none
+    }
+}
+
+.form-control::-ms-expand {
+    background-color: transparent;
+    border: 0
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25)
+}
+
+.form-control::-webkit-input-placeholder {
+    color: #6c757d;
+    opacity: 1
+}
+
+.form-control::-moz-placeholder {
+    color: #6c757d;
+    opacity: 1
+}
+
+.form-control:-ms-input-placeholder {
+    color: #6c757d;
+    opacity: 1
+}
+
+.form-control::-ms-input-placeholder {
+    color: #6c757d;
+    opacity: 1
+}
+
+.form-control::placeholder {
+    color: #6c757d;
+    opacity: 1
+}
+
+.form-control:disabled, .form-control[readonly] {
+    background-color: #e9ecef;
+    opacity: 1
+}
+
+select.form-control:focus::-ms-value {
+    color: #495057;
+    background-color: #fff
+}
+
+.form-control-file, .form-control-range {
+    display: block;
+    width: 100%
+}
+
+@media only screen and (min-width: 1000px) {
+    #main-index {
+        background: url('img/icon.png') no-repeat center center;
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .bee-well-title {
+        font-family: 'Fredoka One', cursive;
+        text-align: center;
+        color: #213210;
+        font-size: 4rem;
+        margin: .75rem;
+    }
+}
+/* Dashboard Styling */
+.page-header {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    background: url('img/icon-header.png') no-repeat left center;
+}

@@ -2,15 +2,25 @@
 
 <body>
     <main id="main-index">
-        <section class="landing">
-            <h1 class="landing-title">Bee Well Journal</h1>
+        <h1 class="bee-well-title">Bee Well Journal</h1>
+        <section class="landing-content">
             <div class="landing-detail">
-            <h2>Gratitude and Mindfulness can help prepare and strengthen you for the rough patches of your life. Use this journal to check in with yourself and stay focused on the things that matter</h2>
-            <p>Login or Register with:</p>
-            <a href="/login">Login</a>
-            <a href="/signup">Signup</a>
-        </div>
+                <h2>Cultivate a life of <span class="keyword">gratitude</span>, <span class="keyword">mindfulness</span>, and <span class="keyword">focus</span></h2>
+            </div>
+
         </section>
+        <footer class="landing-auth">
+            <h3 id="auth-label">Begin your wellness journey</h3>
+            <div id="auth-btns"></div>
+            <a href="/login" class="btn">Login</a>
+            <a href="/signup" class="btn">Signup</a>
+            </div>
+            <div id="copyright">
+                <hr />
+                <small id="signature">&#169 Nam Ninja</small>
+            </div>
+
+        </footer>
     </main>
     <%- include('scripts', {}); %>
 </body>

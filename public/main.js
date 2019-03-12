@@ -1,7 +1,10 @@
-const SERVERBASE = "//gentle-chamber-86652.herokuapp.com/";
+'use strict'
 
+// initialize our Global Variables
+const SERVERBASE = "//gentle-chamber-86652.herokuapp.com/";
 const LOCAL = 'http://localhost:8080/'
 
+// plotly data variables
 const morning = {
   x: [],
   y: [],
@@ -16,33 +19,34 @@ const evening = {
   name: 'evening mood'
 };
 
+// This function extracts morning mood data and pushes into our plotly array
 function getMorningMood(data) {
   console.log('getMorningMood ran')
-
+// there are more than 30 entries, it extracts the most recent 30
   if (data.length > 30) {
     for (let i = data.length - 30; i < data.length; i++) {
       morning.y.push(data[i].morningRating)
       morning.x.push(data[i].created)
     }
-   
+  // if there are less than 30, it extracts all of the data
   } else {
     for (let i = 0; i < data.length; i++) {
       morning.y.push(data[i].morningRating)
       morning.x.push(data[i].created)
     }
   }
-  console.log(morning)
 }
-
+// This function extracts evening mood data and pushes into our plotly array
 function getEveningMood(data) {
   console.log('getEveningMood ran')
   console.log(data.length)
-
+// there are more than 30 entries, it extracts the most recent 30
   if (data.length > 30) {
     for (let i = data.length - 30; i < data.length; i++) {
       evening.y.push(data[i].eveningRating)
       evening.x.push(data[i].created)
     }
+// if there are less than 30, it extracts all of the data
   } else {
     for (let i = 0; i < data.length; i++) {
       evening.y.push(data[i].eveningRating)
@@ -52,10 +56,10 @@ function getEveningMood(data) {
   console.log(evening)
 }
 
-
+// This function makes a fetch call to extract the mood data from the server
 function getMoodData() {
   console.log('getMoodData ran')
-  const url = SERVERBASE + 'mood-data'
+  const url = LOCAL + 'mood-data'
   fetch(url)
     .then(response => {
       if (response.ok) {
@@ -65,10 +69,12 @@ function getMoodData() {
       //if reponse is not ok,then throw an error
       throw new Error(response.statusText);
     })
+    //we use promises to make sure our data is fully available before processing.
     .then(responseJson => {
       getMorningMood(responseJson)
       getEveningMood(responseJson)
     })
+    //Once the data is handled and varaiables are ready, we process the data for visualization.
     .then(() => {
       var data = [morning, evening];
       var layout = {
@@ -98,9 +104,13 @@ function displayError(error) {
   console.log('displayError ran');
   $('#plotly').html(`<h4 role="alert" class="error">Something went wrong: ${error}</h4>`)
 }
+
+// We create delete on the front end, because the majority of our CRUD operations are submitted by forms
+// which only provide GET and POST operation.  
 function deleteJournal(journalId) {
   console.log("Deleting journal `" + journalId + "`");
-  const url = SERVERBASE + "delete-journal/" + journalId
+  const url = LOCAL + "delete-journal/" + journalId
+  // fetch data from the server with the Delete method
   fetch(url, {
     method: "DELETE",
   })
@@ -116,8 +126,9 @@ function deleteJournal(journalId) {
     .catch(err => {
       console.log(err.message);
     });
-
 }
+
+// This function handles the click event for Deleting Journals
 function handleJournalDelete() {
   $(".js-delete").on("click", function (e) {
     e.preventDefault();
@@ -127,6 +138,7 @@ function handleJournalDelete() {
     );
   });
 }
+
 $(function () {
   console.log('Ready!');
   getMoodData();
