@@ -80,7 +80,7 @@ function getEveningMood(data) {
 // This function makes a fetch call to extract the mood data from the server
 function getMoodData() {
   console.log('getMoodData ran')
-  const url = LOCAL + 'mood-data'
+  const url = SERVERBASE + 'mood-data'
   fetch(url)
     .then(response => {
       if (response.ok) {
@@ -117,7 +117,7 @@ function displayError(error) {
 // which only provide GET and POST operation.  
 function deleteJournal(journalId) {
   console.log("Deleting journal `" + journalId + "`");
-  const url = LOCAL + "delete-journal/" + journalId
+  const url = SERVERBASE + "delete-journal/" + journalId
   // fetch data from the server with the Delete method
   fetch(url, {
     method: "DELETE",
