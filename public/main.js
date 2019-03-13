@@ -11,12 +11,32 @@ const morning = {
   type: 'scatter',
   name: 'morning mood'
 };
-
 const evening = {
   x: [],
   y: [],
   type: 'scatter',
   name: 'evening mood'
+};
+const layout = {
+  title: {
+    text:'30 Day Mood Meter',
+    font: {
+      family: 'sans-serif',
+      size: 24
+    },
+    xref: 'paper'
+  },
+  xaxis: {
+    type: 'date'
+  },
+  showlegend: true,
+  legend: { 
+    "orientation": "h",
+    "xanchor":"center",
+    "yanchor":"center",
+    "y":-.2,
+    "x":.5
+ }
 };
 
 // This function extracts morning mood data and pushes into our plotly array
@@ -24,7 +44,7 @@ function getMorningMood(data) {
   console.log('getMorningMood ran')
 // there are more than 30 entries, it extracts the most recent 30
   if (data.length > 30) {
-    for (let i = data.length - 30; i < data.length; i++) {
+    for (let i = data.length - 30; i < data.length ; i++) {
       morning.y.push(data[i].morningRating)
       morning.x.push(data[i].created)
     }
@@ -35,6 +55,7 @@ function getMorningMood(data) {
       morning.x.push(data[i].created)
     }
   }
+  console.log(morning)
 }
 // This function extracts evening mood data and pushes into our plotly array
 function getEveningMood(data) {
@@ -77,19 +98,6 @@ function getMoodData() {
     //Once the data is handled and varaiables are ready, we process the data for visualization.
     .then(() => {
       var data = [morning, evening];
-      var layout = {
-        title: {
-          text:'30 Day Mood Meter',
-          font: {
-            family: 'sans-serif',
-            size: 24
-          },
-          xref: 'paper',
-         
-        },
-        showlegend: true,
-        legend: { "orientation": "v" }
-      };
       Plotly.newPlot('plotly', data, layout, {responsive: true});
     })
     //if reponse is not ok, then the error we threw will be passed as a parameter in the displayError function and rendered in DOM

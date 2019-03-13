@@ -43,24 +43,42 @@ body {
     background: #F89A76;
     color: #ffffff;
     font-family: "Raleway", sans-serif;
-    font-size: 1.2rem;
+    font-size: 18px;
     cursor: pointer;
     text-align: center;
     transition: background 250ms ease-in-out, transform 150ms ease;
     -webkit-appearance: none;
     -moz-appearance: none;
 }
-
-.btn:hover, .btn:focus {
+.btn-journal {
+    display: inline-block;
+    border: none;
+    min-width: 80px; 
+    padding: 10px 15px;
+    margin: 5px;
+    text-decoration: none;
+    background: #F89A76;
+    color: #ffffff;
+    font-family: "Raleway", sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    transition: background 250ms ease-in-out, transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+.btn:hover, .btn:focus, .btn-journal:hover, .btn-journal:focus {
     background: #666C35;
 }
-
-.btn:focus {
+#logout:hover, #logout:focus {
+    color: #666C35;
+}
+.btn:focus, #logout:focus, .btn-journal:focus {
     outline: 1px solid #fff;
     outline-offset: -4px;
 }
 
-.btn:active {
+.btn:active, #logout:active, .btn-journal:active {
     transform: scale(0.99);
 }
 
@@ -172,6 +190,32 @@ body {
     background-clip: padding-box;
     border: 1px solid #ced4da;
     border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+}
+
+.radio-group {
+    display: block;
+
+}
+.form-improve-control {
+    height: 200px;
+}
+.form-journal-control {
+    height: 400px;
+}
+.radio-control {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    margin: 15px;
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
 }
 .form-text {
@@ -236,6 +280,145 @@ select.form-control:focus::-ms-value {
     display: block;
     width: 100%
 }
+/* Dashboard Styling */
+.page-header {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+   
+}
+.bee-well-dash {
+    font-family: 'Fredoka One', cursive;
+    text-align: left;
+    color: #213210;
+    font-size: 32px;
+    margin: 5px 5px 5px 5px;
+    flex: 1 1 auto;
+}
+#bee-well-logo {
+    margin-left: 5px;
+    flex-shrink: 0;
+    height: auto;
+}
+
+#logout {
+    color: #F89A76;
+    flex-shrink: 0;
+    margin: 20px;
+}
+
+#logout-btn {
+    margin-right: 18px;
+}
+.plotly {
+    flex: 1 0 auto;
+}
+.journal-list {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10px;
+    font-family: "Monserrat", serif;
+}
+.journal-links {
+    text-decoration: none;
+    flex: 1 0 auto;
+}
+
+.journal-links:hover {
+    
+    font-family: 'Merriweather', serif;
+}
+
+.journal-links:active {
+    color: black;
+}
+
+.journal-links:visited {
+    color: purple;
+}
+
+.journal-links-container {
+    border: 1px solid #F2F8EC;
+    background-color: #ffffff;
+    margin-top: 10px;
+    width: 90%;
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 25px;
+}
+
+#dash-footer {
+    height: 20px;
+    text-align: right;
+}
+.main-journal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.journal-entry {
+    border: 1px solid #F2F8EC;
+    background-color: #ffffff;
+    width: 90%;
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+    padding: 7% 7%;
+    margin-bottom: 45px;
+    margin-top: 25px;
+}
+
+.journal-date {
+    border-bottom: 1px solid #21321048;
+    padding-bottom: 5px;
+    font-size: 18px;
+}
+.answers-final {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+}
+li {
+    list-style: circle;
+}
+.navigation {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 411px) {
+    .journal-date {
+        border-bottom: 1px solid #21321048;
+        padding-bottom: 5px;
+        font-size: 18px;
+        text-align: center;
+    }
+    .form-group {
+        text-align: center;
+    }
+    .radio-control {
+        font-family: 'Roboto', sans-serif;
+        font-size: 20px;
+        margin: 15px;
+        padding: .375rem .75rem;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
+    }
+}
+
 
 @media only screen and (min-width: 1000px) {
     #main-index {
@@ -252,14 +435,26 @@ select.form-control:focus::-ms-value {
         font-size: 4rem;
         margin: .75rem;
     }
-}
-/* Dashboard Styling */
-.page-header {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100px;
-    background: url('img/icon-header.png') no-repeat left center;
+    .bee-well-dash {
+        font-family: 'Fredoka One', cursive;
+        text-align: left;
+        color: #213210;
+        font-size: 45px;
+        margin: .75rem;
+        margin-left: 20px;
+        flex: 1 1 auto;
+    }
+    #bee-well-logo {
+        margin-left: 5px;
+        flex-shrink: 0;
+    }
+
+    .navigation {
+        display: flex;
+        justify-content: flex-end;
+    }
+    .journal-date {
+        border-bottom: 1px solid #21321048;
+        padding-bottom: 5px;
+    }
 }

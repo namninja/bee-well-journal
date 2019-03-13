@@ -1,93 +1,161 @@
 <%- include('head', {}); %>
+
 <body>
-<div class="container">
+    <main class="main-journal">
+        <header class="page-header text-center">
+            <a id="bee-well-logo" href="/dashboard"><img src="../img/icon-header.png" alt="Bee Well Icon"></a>
+            <h1 class="bee-well-dash">Bee Well Journal</h1>
+        </header>
+        <section class="journal-entry">
 
-    <div class="col-sm-6 col-sm-offset-3">
+            <h2 class="journal-date">
+                <%= (journal) ? 'Edit Journal: ' + moment(journal.created).format(shortDateFormat)  : 'New Journal' %>
+            </h2>
 
-        <h1><span class="fa fa-sign-in"></span><%= (journal) ? 'Edit Journal: ' + moment(journal.created).format(shortDateFormat)  : 'New Journal' %></h1>
-    
-    
-    
-       
-        <form action="/<%= (journal) ? 'create-journal/'+journal._id : 'create-journal' %>" method="post">
-            <div class="form-group">
-                <label>How do you feel this morning on a scale of 1-10</label>
-                <input type="radio" class="form-control" name="morningRating" value="1" <%= (journal && journal.morningRating === 1) ? 'checked' : "" %> >1
-                <input type="radio" class="form-control" name="morningRating" value="2" <%= (journal && journal.morningRating === 2) ? 'checked' : "" %> >2
-                <input type="radio" class="form-control" name="morningRating" value="3" <%= (journal && journal.morningRating === 3) ? 'checked' : "" %> >3
-                <input type="radio" class="form-control" name="morningRating" value="4" <%= (journal && journal.morningRating === 4) ? 'checked' : "" %> >4
-                <input type="radio" class="form-control" name="morningRating" value="5" <%= (journal && journal.morningRating === 5) ? 'checked' : "" %> >5
-                <input type="radio" class="form-control" name="morningRating" value="6" <%= (journal && journal.morningRating === 6) ? 'checked' : "" %> >6
-                <input type="radio" class="form-control" name="morningRating" value="7" <%= (journal && journal.morningRating === 7) ? 'checked' : "" %> >7
-                <input type="radio" class="form-control" name="morningRating" value="8" <%= (journal && journal.morningRating === 8) ? 'checked' : "" %> >8
-                <input type="radio" class="form-control" name="morningRating" value="9" <%= (journal && journal.morningRating === 9) ? 'checked' : "" %> >9
-                <input type="radio" class="form-control" name="morningRating" value="10" <%= (journal && journal.morningRating === 10) ? 'checked' : "" %> >10
-               
-            </div>
-            <div class="form-group">
-                <label>3 things you are excited about</label>
-                <input type="text" class="form-control" name="excitedAbout" value="<%= (journal) ? journal.excitedAbout[0] : '' %>">
-                <input type="text" class="form-control" name="excitedAbout" value="<%= (journal) ? journal.excitedAbout[1] : '' %>">
-                <input type="text" class="form-control" name="excitedAbout" value="<%= (journal) ? journal.excitedAbout[2] : '' %>">
-            </div>
-            <div class="form-group">
-                <label>Today's Priorities</label>
-                <input type="text" class="form-control" name="priorities" value="<%= (journal) ? journal.priorities[0] : '' %>">
-                <input type="text" class="form-control" name="priorities" value="<%= (journal) ? journal.priorities[1] : '' %>">
-                <input type="text" class="form-control" name="priorities" value="<%= (journal) ? journal.priorities[2] : '' %>">
-                <input type="text" class="form-control" name="priorities" value="<%= (journal) ? journal.priorities[3] : '' %>">
-                <input type="text" class="form-control" name="priorities" value="<%= (journal) ? journal.priorities[4] : '' %>">
-            </div>
-            <div class="form-group">
-                <label>How do you feel this evening on a scale of 1-10</label>
-                <input type="radio" class="form-control" name="eveningRating" value="1" <%= (journal && journal.eveningRating === 1) ? 'checked' : "" %> >1
-                <input type="radio" class="form-control" name="eveningRating" value="2" <%= (journal && journal.eveningRating === 2) ? 'checked' : "" %> >2
-                <input type="radio" class="form-control" name="eveningRating" value="3" <%= (journal && journal.eveningRating === 3) ? 'checked' : "" %> >3
-                <input type="radio" class="form-control" name="eveningRating" value="4" <%= (journal && journal.eveningRating === 4) ? 'checked' : "" %> >4
-                <input type="radio" class="form-control" name="eveningRating" value="5" <%= (journal && journal.eveningRating === 5) ? 'checked' : "" %> >5
-                <input type="radio" class="form-control" name="eveningRating" value="6" <%= (journal && journal.eveningRating === 6) ? 'checked' : "" %> >6
-                <input type="radio" class="form-control" name="eveningRating" value="7" <%= (journal && journal.eveningRating === 7) ? 'checked' : "" %> >7
-                <input type="radio" class="form-control" name="eveningRating" value="8" <%= (journal && journal.eveningRating === 8) ? 'checked' : "" %> >8
-                <input type="radio" class="form-control" name="eveningRating" value="9" <%= (journal && journal.eveningRating === 9) ? 'checked' : "" %> >9
-                <input type="radio" class="form-control" name="eveningRating" value="10" <%= (journal && journal.eveningRating === 10) ? 'checked' : "" %> >10
-            </div>
-            <div class="form-group">
-                <label>Pick three words to describe your day</label>
-                <input type="text" class="form-control" name="describeToday" value="<%= (journal) ? journal.describeToday[0] : '' %>">
-                <input type="text" class="form-control" name="describeToday" value="<%= (journal) ? journal.describeToday[1] : '' %>">
-                <input type="text" class="form-control" name="describeToday" value="<%= (journal) ? journal.describeToday[2] : '' %>">
-            </div>
-            <div class="form-group">
-                <label>Today's Wins</label>
-                <input type="text" class="form-control" name="todayWins" value="<%= (journal) ? journal.todayWins[0] : '' %>">
-                <input type="text" class="form-control" name="todayWins" value="<%= (journal) ? journal.todayWins[1] : '' %>">
-                <input type="text" class="form-control" name="todayWins" value="<%= (journal) ? journal.todayWins[2] : '' %>">
-            </div>
-            <div class="form-group">
-                <label>Things to improve on</label>
-                <input type="text" class="form-control" name="toImprove" value="<%= (journal) ? journal.toImprove : '' %>">
-            </div>
-            <div class="form-group">
-                <label>Three things you are grateful for</label>
-                <input type="text" class="form-control" name="gratitude" value="<%= (journal) ? journal.gratitude[0] : '' %>">
-                <input type="text" class="form-control" name="gratitude" value="<%= (journal) ? journal.gratitude[1] : '' %>">
-                <input type="text" class="form-control" name="gratitude" value="<%= (journal) ? journal.gratitude[2] : '' %>">
-            </div>
-            <div class="form-group">
-                <label>Journal</label>
-                <input type="text" class="form-control" name="journalEntry" value="<%= (journal) ? journal.journalEntry : '' %>">
-            </div>
-            
-            <button type="submit" class="btn btn-warning btn-lg">Save</button>
-        </form>
-        <a href="/dashboard" class="btn btn-default btn-sm">Cancel</a>
-        <hr>
-    
-    
-    </div>
-   
 
-</div>
-<%- include('scripts', {}); %>
+
+
+            <form action="/<%= (journal) ? 'create-journal/'+journal._id : 'create-journal' %>" method="post">
+                <div class="form-group radio-group">
+                    <div><label>
+                            <h4>How do you feel this morning on a scale of 1-10</h4>
+                        </label></div>
+                    <input type="radio" class="radio-control" name="morningRating" value="1"
+                        <%= (journal && journal.morningRating === 1) ? 'checked' : "" %>>1
+                    <input type="radio" class="radio-control" name="morningRating" value="2"
+                        <%= (journal && journal.morningRating === 2) ? 'checked' : "" %>>2
+                    <input type="radio" class="radio-control" name="morningRating" value="3"
+                        <%= (journal && journal.morningRating === 3) ? 'checked' : "" %>>3
+                    <input type="radio" class="radio-control" name="morningRating" value="4"
+                        <%= (journal && journal.morningRating === 4) ? 'checked' : "" %>>4
+                    <input type="radio" class="radio-control" name="morningRating" value="5"
+                        <%= (journal && journal.morningRating === 5) ? 'checked' : "" %>>5
+                    <input type="radio" class="radio-control" name="morningRating" value="6"
+                        <%= (journal && journal.morningRating === 6) ? 'checked' : "" %>>6
+                    <input type="radio" class="radio-control" name="morningRating" value="7"
+                        <%= (journal && journal.morningRating === 7) ? 'checked' : "" %>>7
+                    <input type="radio" class="radio-control" name="morningRating" value="8"
+                        <%= (journal && journal.morningRating === 8) ? 'checked' : "" %>>8
+                    <input type="radio" class="radio-control" name="morningRating" value="9"
+                        <%= (journal && journal.morningRating === 9) ? 'checked' : "" %>>9
+                    <input type="radio" class="radio-control" name="morningRating" value="10"
+                        <%= (journal && journal.morningRating === 10) ? 'checked' : "" %>>10
+
+                </div>
+                <div class="form-group">
+                    <label>
+                        <h4>3 things you are excited about</h4>
+                    </label>
+                    <input type="text" class="form-control" name="excitedAbout"
+                        value="<%= (journal) ? journal.excitedAbout[0] : '' %>">
+                    <input type="text" class="form-control" name="excitedAbout"
+                        value="<%= (journal) ? journal.excitedAbout[1] : '' %>">
+                    <input type="text" class="form-control" name="excitedAbout"
+                        value="<%= (journal) ? journal.excitedAbout[2] : '' %>">
+                </div>
+                <div class="form-group">
+                    <label>
+                        <h4>Today's Priorities</h4>
+                    </label>
+                    <input type="text" class="form-control" name="priorities"
+                        value="<%= (journal) ? journal.priorities[0] : '' %>">
+                    <input type="text" class="form-control" name="priorities"
+                        value="<%= (journal) ? journal.priorities[1] : '' %>">
+                    <input type="text" class="form-control" name="priorities"
+                        value="<%= (journal) ? journal.priorities[2] : '' %>">
+                    <input type="text" class="form-control" name="priorities"
+                        value="<%= (journal) ? journal.priorities[3] : '' %>">
+                    <input type="text" class="form-control" name="priorities"
+                        value="<%= (journal) ? journal.priorities[4] : '' %>">
+                </div>
+                <div class="form-group radio-group">
+                    <div><label>
+                            <h4>How do you feel this evening on a scale of 1-10</h4>
+                        </label></div>
+
+                    <input type="radio" class="radio-control" name="eveningRating" value="1"
+                        <%= (journal && journal.eveningRating === 1) ? 'checked' : "" %>>1
+                    <input type="radio" class="radio-control" name="eveningRating" value="2"
+                        <%= (journal && journal.eveningRating === 2) ? 'checked' : "" %>>2
+                    <input type="radio" class="radio-control" name="eveningRating" value="3"
+                        <%= (journal && journal.eveningRating === 3) ? 'checked' : "" %>>3
+                    <input type="radio" class="radio-control" name="eveningRating" value="4"
+                        <%= (journal && journal.eveningRating === 4) ? 'checked' : "" %>>4
+                    <input type="radio" class="radio-control" name="eveningRating" value="5"
+                        <%= (journal && journal.eveningRating === 5) ? 'checked' : "" %>>5
+                    <input type="radio" class="radio-control" name="eveningRating" value="6"
+                        <%= (journal && journal.eveningRating === 6) ? 'checked' : "" %>>6
+                    <input type="radio" class="radio-control" name="eveningRating" value="7"
+                        <%= (journal && journal.eveningRating === 7) ? 'checked' : "" %>>7
+                    <input type="radio" class="radio-control" name="eveningRating" value="8"
+                        <%= (journal && journal.eveningRating === 8) ? 'checked' : "" %>>8
+                    <input type="radio" class="radio-control" name="eveningRating" value="9"
+                        <%= (journal && journal.eveningRating === 9) ? 'checked' : "" %>>9
+                    <input type="radio" class="radio-control" name="eveningRating" value="10"
+                        <%= (journal && journal.eveningRating === 10) ? 'checked' : "" %>>10
+                </div>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <h4>Pick three words to describe your day</h4>
+                    </label>
+                    <input type="text" class="form-control" name="describeToday"
+                        value="<%= (journal) ? journal.describeToday[0] : '' %>">
+                    <input type="text" class="form-control" name="describeToday"
+                        value="<%= (journal) ? journal.describeToday[1] : '' %>">
+                    <input type="text" class="form-control" name="describeToday"
+                        value="<%= (journal) ? journal.describeToday[2] : '' %>">
+                </div>
+                <div class="form-group">
+                    <label>
+                        <h4>Today's Wins</h4>
+                    </label>
+                    <input type="text" class="form-control" name="todayWins"
+                        value="<%= (journal) ? journal.todayWins[0] : '' %>">
+                    <input type="text" class="form-control" name="todayWins"
+                        value="<%= (journal) ? journal.todayWins[1] : '' %>">
+                    <input type="text" class="form-control" name="todayWins"
+                        value="<%= (journal) ? journal.todayWins[2] : '' %>">
+                </div>
+                <div class="form-group">
+                    <label>
+                        <h4>Things to improve on</h4>
+                    </label>
+                    <textarea type="text" class="form-control form-improve-control" name="toImprove"><%= (journal) ? journal.toImprove : '' %>
+                    </textarea>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <h4>Three things you are grateful for</h4>
+                    </label>
+                    <input type="text" class="form-control" name="gratitude"
+                        value="<%= (journal) ? journal.gratitude[0] : '' %>">
+                    <input type="text" class="form-control" name="gratitude"
+                        value="<%= (journal) ? journal.gratitude[1] : '' %>">
+                    <input type="text" class="form-control" name="gratitude"
+                        value="<%= (journal) ? journal.gratitude[2] : '' %>">
+                </div>
+                <div class="form-group">
+                    <label>
+                        <h4>Journal</h4>
+                    </label>
+                    <textarea type="text" class="form-control form-journal-control" name="journalEntry"><%= (journal) ? journal.journalEntry : '' %>
+                    </textarea>
+                </div>
+                <section class="navigation">
+                    <a href="/dashboard" class="btn-journal">Cancel</a>
+                    <button type="submit" class="btn-journal">Save</button>
+                </section>
+            </form>
+
+
+
+
+        </section>
+
+
+    </main>
+    <%- include('scripts', {}); %>
 </body>
+
 </html>

@@ -30,7 +30,7 @@ journalSchema.methods.moodData = function () {
   return {
     morningRating: this.morningRating,
     eveningRating: this.eveningRating,
-    created: this.created
+    created: moment(this.created).format("YYYY-MM-DD")
   };
 };
 journalSchema.methods.serialize = function () {
