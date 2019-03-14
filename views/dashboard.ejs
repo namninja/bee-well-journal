@@ -2,35 +2,29 @@
 <%- include('head', {}); %>
 
 <body>
-    <main>
-        <header class="page-header text-center">
-
+    <main role="main">
+        <header role="banner" class="page-header text-center">
             <a id="bee-well-logo" href="/dashboard"><img src="../img/icon-header.png" alt="Bee Well Icon"></a>
             <h1 class="bee-well-dash">Bee Well Journal</h1>
         </header>
-        <section id="plotly">
+        <section role="region" id="plotly">
         </section>
-        <section class="journal-list">
-            <a class="btn" href="/create-journal"> Create new journal </a>
+        <section role="region" class="journal-list">
+            <a class="btn-create" href="/create-journal"> Add a new journal entry </a>
             <div class="journal-links-container">
                 <% for( let i= journals.length-1; i >= 0; i--) { %>
-
                 <a class="journal-links" href="/journal/<%=journals[i]._id%>">
                     <h3 class="dates"><%=moment(journals[i].created).format(shortDateFormat)%></h3>
                 </a>
-
                 <% } %>
             </div>
         </section>
-        <footer id="dash-footer">
-        
+        <footer role="contentinfo" id="dash-footer">  
             <a href="/logout">
                 <i id="logout" class="fas fa-sign-out-alt"></i>
             </a>
-
         </footer>
     </main>
     <%- include('scripts', {}); %>
 </body>
-
 </html>

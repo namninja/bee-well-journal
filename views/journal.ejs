@@ -1,14 +1,12 @@
-<!-- views/profile.ejs -->
-<%- include('head', {}); %>
 
+<%- include('head', {}); %>
 <body>
-    <main class="main-journal">
+    <main role="main" class="main-journal">
         <header class="page-header text-center">
             <a id="bee-well-logo" href="/dashboard"><img src="../img/icon-header.png" alt="Bee Well Icon"></a>
             <h1 class="bee-well-dash">Bee Well Journal</h1>
         </header>
-
-        <section class="journal-entry">
+        <section role="region" class="journal-entry">
             <h2 class="journal-date"><%=moment(journal[0].created).format(shortDateFormat)%></h2>
             <div class="form-group">
                 <h4>How do you feel this morning on a scale of 1-10</h4>
@@ -55,7 +53,6 @@
                 <p class="answers-final"><%=journal[0].toImprove%></p>
             </div>
             <div class="form-group">
-
                 <h4>Three things you are grateful for</h4>
                     <% for( let i=0; i < journal[0].gratitude.length; i++) { %>
                     <p class="answers-final">
@@ -67,20 +64,15 @@
                 <h4>Journal</h4>
                 <p class="answers-final"><%=journal[0].journalEntry%></p></div>
             </div>
-            <section class="navigation">
+            <section role="region" class="navigation">
                 <a href="#" class="btn-journal js-delete"
                     onclick="return confirm('WARNING! You are are about to delete this Journal')"
                     data-key='<%=journal[0]._id%>'>Delete</a>
                 <a class="btn-journal" href="/create-journal/<%=journal[0]._id%>">Edit</a>
                 <a class="btn-journal" href="/dashboard">Home</a>
             </section>
-
-
         </section>
-
-
     </main>
     <%- include('scripts', {}); %>
 </body>
-
 </html>

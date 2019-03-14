@@ -1,25 +1,20 @@
 <%- include('head', {}); %>
 
 <body>
-    <main class="main-journal">
-        <header class="page-header text-center">
+    <main role="main" class="main-journal">
+        <header role="banner" class="page-header text-center">
             <a id="bee-well-logo" href="/dashboard"><img src="../img/icon-header.png" alt="Bee Well Icon"></a>
             <h1 class="bee-well-dash">Bee Well Journal</h1>
         </header>
-        <section class="journal-entry">
-
+        <section role="region" class="journal-entry">
             <h2 class="journal-date">
-                <%= (journal) ? 'Edit Journal: ' + moment(journal.created).format(shortDateFormat)  : 'New Journal' %>
+                <%= (journal) ? 'Edit Journal: ' + moment(journal.created).format(shortDateFormat) : 'New Journal' %>
             </h2>
-
-
-
-
             <form action="/<%= (journal) ? 'create-journal/'+journal._id : 'create-journal' %>" method="post">
                 <div class="form-group radio-group">
-                    <div><label>
-                            <h4>How do you feel this morning on a scale of 1-10</h4>
-                        </label></div>
+                    <label>
+                        <h4>How do you feel this morning on a scale of 1-10</h4>
+                    </label>
                     <input type="radio" class="radio-control" name="morningRating" value="1"
                         <%= (journal && journal.morningRating === 1) ? 'checked' : "" %>>1
                     <input type="radio" class="radio-control" name="morningRating" value="2"
@@ -40,7 +35,6 @@
                         <%= (journal && journal.morningRating === 9) ? 'checked' : "" %>>9
                     <input type="radio" class="radio-control" name="morningRating" value="10"
                         <%= (journal && journal.morningRating === 10) ? 'checked' : "" %>>10
-
                 </div>
                 <div class="form-group">
                     <label>
@@ -72,7 +66,6 @@
                     <div><label>
                             <h4>How do you feel this evening on a scale of 1-10</h4>
                         </label></div>
-
                     <input type="radio" class="radio-control" name="eveningRating" value="1"
                         <%= (journal && journal.eveningRating === 1) ? 'checked' : "" %>>1
                     <input type="radio" class="radio-control" name="eveningRating" value="2"
@@ -121,8 +114,8 @@
                     <label>
                         <h4>Things to improve on</h4>
                     </label>
-                    <textarea type="text" class="form-control form-improve-control" name="toImprove"><%= (journal) ? journal.toImprove : '' %>
-                    </textarea>
+                    <textarea type="text" class="form-control form-improve-control"
+                        name="toImprove"><%= (journal) ? journal.toImprove : '' %></textarea>
                 </div>
                 <div class="form-group">
                     <label>
@@ -139,23 +132,16 @@
                     <label>
                         <h4>Journal</h4>
                     </label>
-                    <textarea type="text" class="form-control form-journal-control" name="journalEntry"><%= (journal) ? journal.journalEntry : '' %>
-                    </textarea>
+                    <textarea type="text" class="form-control form-journal-control"
+                        name="journalEntry"><%= (journal) ? journal.journalEntry:''%></textarea>
                 </div>
-                <section class="navigation">
+                <section role="region" class="navigation">
                     <a href="/dashboard" class="btn-journal">Cancel</a>
                     <button type="submit" class="btn-journal">Save</button>
                 </section>
             </form>
-
-
-
-
         </section>
-
-
     </main>
     <%- include('scripts', {}); %>
 </body>
-
 </html>

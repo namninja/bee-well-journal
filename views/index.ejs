@@ -1,15 +1,15 @@
 <%- include('head', {}); %>
 
 <body>
-    <main id="main-index">
+    <main role="main" id="main-index">
         <h1 class="bee-well-title">Bee Well Journal</h1>
-        <section class="landing-content">
+        <section role="region" class="landing-content">
             <div class="landing-detail">
-                <h2>Cultivate a life of <span class="keyword">gratitude</span>, <span class="keyword">mindfulness</span>, and <span class="keyword">focus</span></h2>
+                    <h2>Add a daily practice of introspection and </h2>
+                <h2>cultivate a life of <span class="keyword">gratitude</span>, <span class="keyword">mindfulness</span>, and <span class="keyword">focus</span></h2>           
             </div>
-
         </section>
-        <footer class="landing-auth">
+        <footer role="contentinfo" class="landing-auth">
             <h3 id="auth-label">Begin your wellness journey</h3>
             <div id="auth-btns"></div>
             <a href="/login" class="btn">Login</a>
@@ -19,10 +19,8 @@
                 <hr />
                 <small id="signature">&#169 Nam Ninja</small>
             </div>
-
         </footer>
     </main>
     <%- include('scripts', {}); %>
 </body>
-
 </html>

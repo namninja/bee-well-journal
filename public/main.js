@@ -98,7 +98,7 @@ function getMoodData() {
     //Once the data is handled and varaiables are ready, we process the data for visualization.
     .then(() => {
       var data = [morning, evening];
-      Plotly.newPlot('plotly', data, layout, {responsive: true});
+      Plotly.newPlot('plotly', data, layout, {responsive: true},{staticPlot: true},{displayModeBar: false});
     })
     //if reponse is not ok, then the error we threw will be passed as a parameter in the displayError function and rendered in DOM
     .catch(err => {

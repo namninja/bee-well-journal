@@ -2,17 +2,13 @@
 <%- include('head', {}); %>
 
 <body>
-    <main id="main-index">
+    <main role="main" id="main-index">
             <h1 class="sign-head">Signup</h1>
-        <section class="form-sign">
-
-            
-
+        <section role="region" class="form-sign">
             <!-- show any messages that come back with authentication -->
             <% if (message.length > 0) { %>
             <div class="alert alert-danger"><%= message %></div>
             <% } %>
-
             <!-- SIGN UP FORM -->
             <form class="sign-form" action="/signup" method="post">
                 <div class="form-group">
@@ -31,18 +27,12 @@
                     <label>Confirm Password</label>
                     <input type="password" class="form-control" name="passwordv" required>
                 </div>
-
                 <button type="submit" class="btn">Signup</button>
             </form>
-
-          
-
             <p class="form-text">Already have an account? <a class="links" href="/login">Login</a></p>
             <p class="form-text">Or go <a class="links" href="/">home</a>.</p>
-       
         </section>
     </main>
     <%- include('scripts', {}); %>
 </body>
-
 </html>
