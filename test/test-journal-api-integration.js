@@ -130,48 +130,4 @@ describe('User API resource', function () {
         });
     });
    
-    // describe('GET mood-data endpoint', function () {
-    //     // strategy:
-    //     // 1. create a user sign in
-    //     it('should provide collection of JSON data of user mood data', function () {
-    //         let res;
-    //         let resData;
-    //         let logUser = {
-    //             email: 'test@journaltest.com',
-    //             password: 'test'
-    //         }
-    //         return chai.request(app)
-    //             .post('/login')
-    //             .set('content-type', 'application/x-www-form-urlencoded')
-    //             .send({
-    //                 email: 'test@journaltest.com',
-    //                 password: 'test'
-    //             })
-    //             .then(function (req, res, next) {
-    //                 isLoggedIn(req, res, next)
-    //             })
-    //             .then(function () {
-    //                 return chai.request(app)
-    //                 .get('/mood-data')
-    //                 .then(function(_res) {
-    //                     res = _res;
-    //                     console.log(res.body,'000000000000000000000000000')
-    //                     expect(res).to.have.status(200);
-    //                     expect(res).to.be.json;
-    //                     expect(res.body).to.be.a('array');
-    //                     expect(res.body).to.have.lengthOf.at.least(1);
-    //                     res.body.forEach(function(data) {
-    //                         expect(data).to.be.a('object');
-    //                         expect(data).to.include.keys(
-    //                           'morningRating', 'eveningRating', 'created');
-    //                       });
-    //                       resData = res.body[0];
-    //                       console.log(resData.id)
-    //                       return Journal.resData.id
-    //                 })
-    //             })
-
-
-    //     });
-    // });
 });

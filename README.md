@@ -1,6 +1,9 @@
 # Bee Well Journal
 [https://gentle-chamber-86652.herokuapp.com](https://gentle-chamber-86652.herokuapp.com)
 
+####Demo credentials: 
+email: Demo@demo.com
+password: demo
 
 ### Summary
 
