@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', express.static(path.join(__dirname, '/public'))); 
 app.use('/', express.static(path.join(__dirname, '/public')));
 
-
+// set up middlewhere to serve static assets
 app.use(express.static('public'));
 
 app.set('view engine', 'ejs'); // set up ejs for templating

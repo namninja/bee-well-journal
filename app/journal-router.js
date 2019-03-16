@@ -46,18 +46,18 @@ router.get('/mood-data', isLoggedIn, function (req, res) {
       });
 });
 
-
+// This route renders the create-journal form page
 router.get('/create-journal', isLoggedIn, function (req, res) {
     res.render('create-journal.ejs', { user: req.user, journal: null }); // load the index.ejs file
 });
 
 
-
+// This route posts a new journal entry to the database
 router.post('/create-journal',  isLoggedIn, jsonParser, function(req, res) {
     User.findById(req.user._id)
       .then(user => {
         if (user) {
-            let today = new Date();
+          console.log(req.body,"--------------------")
             req.body.user = req.user._id;
           Journal.create(req.body) 
             .then(res.redirect("/dashboard"))
@@ -77,6 +77,7 @@ router.post('/create-journal',  isLoggedIn, jsonParser, function(req, res) {
       });
 })
 
+// This route renders the create Journal form with data from an already existing journal
 router.get('/create-journal/:id',isLoggedIn, function (req, res) {
     Journal.findOne({ "_id": req.params.id }, function (err, journal) {
         if (err) {
@@ -92,6 +93,7 @@ router.get('/create-journal/:id',isLoggedIn, function (req, res) {
 
 });
 
+// This route posts the data from the already exiting journal and saves additional data if any
 router.post('/create-journal/:id',isLoggedIn, function (req, res) {
     Journal
         .findOneAndUpdate({_id:req.params.id},req.body, {new : true})
@@ -99,6 +101,7 @@ router.post('/create-journal/:id',isLoggedIn, function (req, res) {
         .catch(err => res.status(500).json({ message: "Internal server error" }));
 });
 
+// This route renders a saved journal in cleaner formatting
 router.get('/journal/:id', isLoggedIn, function (req, res) {
     Journal.find({ "_id": req.params.id }, function (err, journal) {
         if (err) {
@@ -112,6 +115,7 @@ router.get('/journal/:id', isLoggedIn, function (req, res) {
 
 });
 
+// This route deletes a journal by ID
 router.delete('/delete-journal/:id', isLoggedIn, function (req, res) {
     console.log(req.params.id)
     Journal.findByIdAndRemove(req.params.id)

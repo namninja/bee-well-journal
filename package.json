@@ -23,7 +23,6 @@
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
-    "method-override": "^3.0.0",
     "moment": "^2.24.0",
     "mongoose": "^5.4.16",
     "mongoose-type-email": "^1.0.10",
@@ -35,7 +34,6 @@
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
     "faker": "^4.1.0",
-    "mocha": "^6.0.2",
-    "supertest": "^4.0.0"
+    "mocha": "^6.0.2"
   }
 }
