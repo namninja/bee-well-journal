@@ -8,7 +8,7 @@
         </header>
         <section role="region" class="journal-entry">
             <h2 class="journal-date">
-                <%= (journal) ? 'Edit Journal: ' + moment(journal.created).format(shortDateFormat) : 'New Journal' %>
+                <%= (journal) ? 'Edit Journal: ' + moment(journal.created).local().format(shortDateFormat) : 'New Journal' %>
             </h2>
             <form action="/<%= (journal) ? 'create-journal/'+journal._id : 'create-journal' %>" method="post">
                 <div class="form-group radio-group">
