@@ -52,6 +52,7 @@ body {
     -webkit-appearance: none;
     -moz-appearance: none;
 }
+
 .btn-create {
     display: inline-block;
     border: none;
@@ -68,10 +69,11 @@ body {
     -webkit-appearance: none;
     -moz-appearance: none;
 }
+
 .btn-journal {
     display: inline-block;
     border: none;
-    min-width: 80px; 
+    min-width: 80px;
     padding: 10px 15px;
     margin: 5px;
     text-decoration: none;
@@ -85,25 +87,31 @@ body {
     -webkit-appearance: none;
     -moz-appearance: none;
 }
-.btn:hover, .btn:focus, .btn-journal:hover, .btn-journal:focus {
+
+.btn:hover, .btn:focus, .btn-journal:hover, .btn-journal:focus, .btn-create:hover, .btn-create:focus {
     background: #666C35;
 }
+
 #logout:hover, #logout:focus {
     color: #666C35;
 }
+
 .btn:focus, #logout:focus, .btn-journal:focus {
     outline: 1px solid #fff;
-    outline-offset: -4px;
+    /* outline-offset: -4px; */
 }
 
 .btn:active, #logout:active, .btn-journal:active {
-    transform: scale(0.99);
+    transform: translateY(3px);
 }
 
 .keyword {
     font-style: italic;
 }
 
+button:active, a:active {
+    transform: translateY(3px);
+  }
 #main-index {
     background: url('img/icon_50.png') no-repeat center center;
     min-height: 100%;
@@ -215,7 +223,7 @@ body {
 
 .date-control {
     display: block;
-    width: 25%;
+    width: 175px;
     height: calc(1.5em + .75rem + 2px);
     padding: .375rem .75rem;
     font-size: 1rem;
@@ -233,14 +241,16 @@ body {
 
 .radio-group {
     display: block;
-
 }
+
 .form-improve-control {
     height: 200px;
 }
+
 .form-journal-control {
     height: 400px;
 }
+
 .radio-control {
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
@@ -254,12 +264,14 @@ body {
     border-radius: .25rem;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
 }
+
 .form-text {
     margin: 0;
     padding: .375rem .75rem;
 }
 
 /* Dashboard Styling */
+
 .page-header {
     display: flex;
     flex-wrap: nowrap;
@@ -267,8 +279,8 @@ body {
     align-items: center;
     width: 100%;
     height: 100px;
-   
 }
+
 .bee-well-dash {
     font-family: 'Fredoka One', cursive;
     text-align: left;
@@ -277,6 +289,7 @@ body {
     margin: 5px 5px 5px 5px;
     flex: 1 1 auto;
 }
+
 #bee-well-logo {
     margin-left: 5px;
     flex-shrink: 0;
@@ -292,9 +305,11 @@ body {
 #logout-btn {
     margin-right: 18px;
 }
+
 .plotly {
     flex: 1 0 auto;
 }
+
 .journal-list {
     display: flex;
     flex-wrap: nowrap;
@@ -304,23 +319,29 @@ body {
     margin-top: 10px;
     font-family: "Monserrat", serif;
 }
+
 .journal-links {
     text-decoration: none;
-    flex: 1 0 auto;
+    background-color: #A5C2AA;
+    color: white;
+    text-align: center;
+    padding: 8px;
+    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.2);
 }
 
 .journal-links:hover {
-    
     font-family: 'Merriweather', serif;
+    background-color: #295C4F;
+    color: white;
 }
 
-.journal-links:active {
-    color: black;
+/* .journal-links:active {
+    color: white;
 }
 
 .journal-links:visited {
-    color: purple;
-}
+    color: white;
+} */
 
 .journal-links-container {
     border: 1px solid #F2F8EC;
@@ -328,12 +349,15 @@ body {
     margin-top: 10px;
     width: 90%;
     min-height: 300px;
-    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(150px, 1fr));
+    grid-auto-rows: 30px;
+    grid-auto-flow: row;
+    grid-column-gap: 10px;
+    grid-row-gap: 15px;
+    justify-items: stretch;
     align-items: center;
-    flex-direction: column;
     padding: 25px;
 }
 
@@ -342,16 +366,18 @@ body {
     text-align: right;
     margin-top: auto;
 }
+
 .main-journal {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .journal-entry {
     border: 1px solid #F2F8EC;
     background-color: #ffffff;
     width: 90%;
-    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
     padding: 7% 7%;
     margin-bottom: 45px;
     margin-top: 25px;
@@ -362,13 +388,16 @@ body {
     padding-bottom: 5px;
     font-size: 18px;
 }
+
 .answers-final {
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
 }
+
 li {
     list-style: circle;
 }
+
 .navigation {
     margin-top: 35px;
     display: flex;
@@ -400,7 +429,6 @@ li {
     }
 }
 
-
 @media only screen and (min-width: 1000px) {
     #main-index {
         background: url('img/icon.png') no-repeat center center;
@@ -429,7 +457,6 @@ li {
         margin-left: 5px;
         flex-shrink: 0;
     }
-
     .navigation {
         display: flex;
         justify-content: flex-end;

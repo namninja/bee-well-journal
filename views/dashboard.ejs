@@ -14,7 +14,7 @@
             <div class="journal-links-container">
                 <% for( let i= journals.length-1; i >= 0; i--) { %>
                 <a class="journal-links" href="/journal/<%=journals[i]._id%>">
-                    <h3 class="dates"><%=moment.utc(journals[i].created).format(shortDateFormat)%></h3>
+                    <%=moment.utc(journals[i].created).format(shortDateFormat)%>
                 </a>
                 <% } %>
             </div>
