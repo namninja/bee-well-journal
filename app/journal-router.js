@@ -48,7 +48,7 @@ router.get('/mood-data', isLoggedIn, function (req, res) {
 
 // This route renders the create-journal form page
 router.get('/create-journal', isLoggedIn, function (req, res) {
-    res.render('create-journal.ejs', { user: req.user, journal: null }); // load the index.ejs file
+    res.render('create-journal.ejs', { user: req.user, journal: null }); 
 });
 
 
@@ -57,7 +57,6 @@ router.post('/create-journal',  isLoggedIn, jsonParser, function(req, res) {
     User.findById(req.user._id)
       .then(user => {
         if (user) {
-          console.log(req.body,"--------------------")
             req.body.user = req.user._id;
           Journal.create(req.body) 
             .then(res.redirect("/dashboard"))
@@ -86,7 +85,6 @@ router.get('/create-journal/:id',isLoggedIn, function (req, res) {
             res.render('create-journal.ejs', {
                 journal: journal,
                 user: req.user
-
             }); 
         }
     });

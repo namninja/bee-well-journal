@@ -8,9 +8,17 @@
         </header>
         <section role="region" class="journal-entry">
             <h2 class="journal-date">
-                <%= (journal) ? 'Edit Journal: ' + moment(journal.created).local().format(shortDateFormat) : 'New Journal' %>
+                <%= (journal) ? 'Edit Journal' : 'New Journal' %>
             </h2>
             <form action="/<%= (journal) ? 'create-journal/'+journal._id : 'create-journal' %>" method="post">
+                <div class="form-group">
+                    <label>
+                        <h4>Date</h4>
+                    </label>
+                    <input type="date" class="date-control" name="created"
+                        value="<%= (journal) ? moment.utc(journal.created).format("YYYY-MM-DD") : '' %>">
+                </div>
+                
                 <div class="form-group radio-group">
                     <label>
                         <h4>How do you feel this morning on a scale of 1-10</h4>
@@ -114,8 +122,7 @@
                     <label>
                         <h4>Things to improve on</h4>
                     </label>
-                    <textarea type="text" class="form-control form-improve-control"
-                        name="toImprove"><%= (journal) ? journal.toImprove : '' %></textarea>
+                    <textarea type="text" class="form-control form-improve-control" name="toImprove"><%= (journal) ? journal.toImprove : '' %></textarea>
                 </div>
                 <div class="form-group">
                     <label>
@@ -132,8 +139,7 @@
                     <label>
                         <h4>Journal</h4>
                     </label>
-                    <textarea type="text" class="form-control form-journal-control"
-                        name="journalEntry"><%= (journal) ? journal.journalEntry:''%></textarea>
+                    <textarea type="text" class="form-control form-journal-control" name="journalEntry"><%= (journal) ? journal.journalEntry:''%></textarea>
                 </div>
                 <section role="region" class="navigation">
                     <a href="/dashboard" class="btn-journal">Cancel</a>
